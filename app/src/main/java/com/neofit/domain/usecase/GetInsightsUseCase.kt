@@ -39,6 +39,7 @@ class GetInsightsUseCase @Inject constructor(
     private val classifyRegion: ClassifyRegionUseCase,
     private val wellnessEngine: WellnessScoreEngine,
     private val recommendationEngine: RecommendationEngine,
+    private val computeGoal: ComputeGoalUseCase,
 ) {
     operator fun invoke(): Flow<InsightsData> {
         val today = DateUtil.todayEpochDay()
@@ -54,8 +55,9 @@ class GetInsightsUseCase @Inject constructor(
             val protein = todayMeals.fold(0f) { a, m -> a + m.estimate.proteinG }
             val todaySteps = weeklySteps.lastOrNull()?.steps ?: 0
 
-            val calorieTarget = profile?.dailyCalorieTarget?.takeIf { it > 0 } ?: 2000
-            val proteinTarget = profile?.dailyProteinTargetG?.takeIf { it > 0 } ?: 50
+            val goal = profile?.let { computeGoal(it) }
+            val calorieTarget = goal?.dailyCalorieTarget?.takeIf { it > 0 } ?: 2000
+            val proteinTarget = goal?.dailyProteinTargetG?.takeIf { it > 0 } ?: 50
             val stepTarget = profile?.dailyStepTarget?.takeIf { it > 0 } ?: 8000
             val waterTarget = profile?.dailyWaterGlassTarget?.takeIf { it > 0 } ?: 8
             val region = profile?.preferredRegion ?: FoodRegion.PAN_INDIA

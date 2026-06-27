@@ -36,6 +36,7 @@ class GetDashboardUseCase @Inject constructor(
     private val foodRepository: FoodRepository,
     private val wellnessEngine: WellnessScoreEngine,
     private val recommendationEngine: RecommendationEngine,
+    private val computeGoal: ComputeGoalUseCase,
 ) {
     private data class Core(
         val profile: UserProfile?,
@@ -69,8 +70,9 @@ class GetDashboardUseCase @Inject constructor(
         monthMeals: List<MealLog>,
     ): DashboardSummary {
         val profile = c.profile
-        val calorieTarget = profile?.dailyCalorieTarget?.takeIf { it > 0 } ?: 2000
-        val proteinTarget = profile?.dailyProteinTargetG?.takeIf { it > 0 } ?: 50
+        val goal = profile?.let { computeGoal(it) }
+        val calorieTarget = goal?.dailyCalorieTarget?.takeIf { it > 0 } ?: 2000
+        val proteinTarget = goal?.dailyProteinTargetG?.takeIf { it > 0 } ?: 50
         val stepTarget = profile?.dailyStepTarget?.takeIf { it > 0 } ?: 8000
         val waterTarget = profile?.dailyWaterGlassTarget?.takeIf { it > 0 } ?: 8
         val region = profile?.preferredRegion ?: FoodRegion.PAN_INDIA

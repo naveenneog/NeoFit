@@ -14,6 +14,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -22,6 +23,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -36,6 +39,8 @@ import com.neofit.feature.common.MiniBarChart
 import com.neofit.feature.common.MiniLineChart
 import com.neofit.feature.common.NeoCard
 import com.neofit.feature.common.SectionTitle
+import kotlin.math.abs
+import kotlin.math.roundToInt
 
 @OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
 @Composable
@@ -76,6 +81,14 @@ fun ProgressScreen(
                 }
             }
 
+            if (state.targetWeightKg > 0f && state.currentWeightKg > 0f) {
+                GoalProgressCard(
+                    start = state.startWeightKg,
+                    current = state.currentWeightKg,
+                    target = state.targetWeightKg,
+                )
+            }
+
             NeoCard(Modifier.fillMaxWidth()) {
                 Column {
                     SectionTitle(stringResource(R.string.prog_weight_history))
@@ -114,6 +127,70 @@ fun ProgressScreen(
                     Text(stringResource(R.string.insights_title), fontWeight = FontWeight.Bold)
                     Icon(Icons.AutoMirrored.Filled.ArrowForward, contentDescription = null)
                 }
+            }
+        }
+    }
+}
+
+@Composable
+private fun GoalProgressCard(
+    start: Float,
+    current: Float,
+    target: Float,
+) {
+    val totalDelta = abs(start - target)
+    val movedToward = if (target <= start) start - current else current - start
+    val fraction = if (totalDelta < 0.01f) 1f else (movedToward / totalDelta).coerceIn(0f, 1f)
+    val percent = (fraction * 100).roundToInt()
+    val remainingKg = abs(current - target)
+    val reached = remainingKg < 0.1f || fraction >= 1f
+
+    NeoCard(Modifier.fillMaxWidth()) {
+        Column {
+            SectionTitle(
+                stringResource(R.string.prog_goal_title),
+                trailing = {
+                    Text(
+                        "$percent%",
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.primary,
+                    )
+                },
+            )
+            Spacer(Modifier.height(10.dp))
+            LinearProgressIndicator(
+                progress = { fraction },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(12.dp)
+                    .clip(RoundedCornerShape(6.dp)),
+                color = MaterialTheme.colorScheme.primary,
+                trackColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.15f),
+            )
+            Spacer(Modifier.height(8.dp))
+            Row(
+                Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text(
+                    stringResource(R.string.prog_goal_start, Format.weight(start)),
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                Text(
+                    if (reached) stringResource(R.string.prog_goal_reached)
+                    else stringResource(R.string.prog_goal_remaining, Format.weight(remainingKg)),
+                    style = MaterialTheme.typography.labelLarge,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.primary,
+                )
+                Text(
+                    stringResource(R.string.prog_goal_goal, Format.weight(target)),
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
             }
         }
     }

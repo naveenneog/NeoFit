@@ -16,6 +16,7 @@ import javax.inject.Inject
 
 data class ProgressState(
     val weights: List<WeightEntry> = emptyList(),
+    val startWeightKg: Float = 0f,
     val currentWeightKg: Float = 0f,
     val targetWeightKg: Float = 0f,
     val bmi: Float = 0f,
@@ -36,6 +37,7 @@ class ProgressViewModel @Inject constructor(
     ) { weights, profile, steps ->
         ProgressState(
             weights = weights,
+            startWeightKg = weights.firstOrNull()?.weightKg ?: profile?.currentWeightKg ?: 0f,
             currentWeightKg = weights.lastOrNull()?.weightKg ?: profile?.currentWeightKg ?: 0f,
             targetWeightKg = profile?.targetWeightKg ?: 0f,
             bmi = profile?.bmi ?: 0f,

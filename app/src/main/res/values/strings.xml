@@ -97,6 +97,12 @@
     <string name="prog_weight_history">Weight history</string>
     <string name="prog_bmi">BMI</string>
     <string name="prog_log_weight">Log weight</string>
+    <string name="prog_goal_title">Goal progress</string>
+    <string name="prog_goal_start">Start %1$s</string>
+    <string name="prog_goal_goal">Goal %1$s</string>
+    <string name="prog_goal_remaining">%1$s to go</string>
+    <string name="prog_goal_reached">Goal reached 🎉</string>
+    <string name="prog_goal_set_target">Set a target weight in your profile to track progress.</string>
 
     <!-- Insights -->
     <string name="insights_title">Insights</string>

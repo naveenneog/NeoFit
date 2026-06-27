@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -34,7 +35,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.Canvas
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import com.neofit.domain.model.ConfidenceLevel
 import com.neofit.core.designsystem.NeoAmber
@@ -162,13 +165,83 @@ fun MiniBarChart(
     }
 }
 
+/**
+ * Line/trend chart with a zoomed y-axis (min..max with padding) plus a small
+ * left axis showing the value range. Suited to metrics like weight where the
+ * meaningful change is tiny relative to the absolute value, so a from-zero bar
+ * chart would render every point as a near-identical full-height bar.
+ */
+@Composable
+fun MiniLineChart(
+    values: List<Float>,
+    labels: List<String>,
+    lineColor: Color,
+    modifier: Modifier = Modifier,
+    valueFormat: (Float) -> String = { "%.1f".format(it) },
+) {
+    if (values.isEmpty()) return
+    val minV = values.minOrNull() ?: 0f
+    val maxV = values.maxOrNull() ?: 0f
+    val rawRange = maxV - minV
+    val pad = if (rawRange < 0.1f) 1f else rawRange * 0.3f
+    val lo = minV - pad
+    val span = (maxV + pad - lo).coerceAtLeast(0.1f)
+    val axisWidth = 40.dp
+
+    Column(modifier.fillMaxWidth()) {
+        Row(Modifier.fillMaxWidth().height(120.dp)) {
+            Column(
+                Modifier.width(axisWidth).fillMaxHeight().padding(end = 6.dp),
+                verticalArrangement = Arrangement.SpaceBetween,
+                horizontalAlignment = Alignment.End,
+            ) {
+                Text(valueFormat(maxV), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(valueFormat(minV), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            }
+            Canvas(Modifier.weight(1f).fillMaxHeight()) {
+                val inset = 6.dp.toPx()
+                val w = (size.width - inset * 2).coerceAtLeast(1f)
+                val h = (size.height - inset * 2).coerceAtLeast(1f)
+                val n = values.size
+                fun px(i: Int) = inset + if (n > 1) w * i / (n - 1) else w / 2f
+                fun py(v: Float) = inset + h * (1f - (v - lo) / span)
+
+                val area = Path().apply {
+                    moveTo(px(0), size.height - inset)
+                    values.forEachIndexed { i, v -> lineTo(px(i), py(v)) }
+                    lineTo(px(n - 1), size.height - inset)
+                    close()
+                }
+                drawPath(area, color = lineColor.copy(alpha = 0.12f))
+
+                val line = Path().apply {
+                    values.forEachIndexed { i, v ->
+                        if (i == 0) moveTo(px(i), py(v)) else lineTo(px(i), py(v))
+                    }
+                }
+                drawPath(line, color = lineColor, style = Stroke(width = 3.dp.toPx(), cap = StrokeCap.Round))
+
+                values.forEachIndexed { i, v ->
+                    drawCircle(lineColor, radius = 4.dp.toPx(), center = Offset(px(i), py(v)))
+                }
+            }
+        }
+        Spacer(Modifier.height(4.dp))
+        Row(Modifier.fillMaxWidth()) {
+            Spacer(Modifier.width(axisWidth))
+            Row(Modifier.weight(1f), horizontalArrangement = Arrangement.SpaceBetween) {
+                labels.forEach { Text(it, style = MaterialTheme.typography.labelMedium) }
+            }
+        }
+    }
+}
+
 @Composable
 fun LoadingState(modifier: Modifier = Modifier) {
     Box(modifier.fillMaxSize().padding(32.dp), contentAlignment = Alignment.Center) {
         CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
     }
 }
-
 @Composable
 fun EmptyState(message: String, emoji: String = "🍽️", modifier: Modifier = Modifier) {
     Column(

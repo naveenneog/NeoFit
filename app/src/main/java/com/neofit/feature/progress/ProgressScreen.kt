@@ -33,6 +33,7 @@ import com.neofit.core.designsystem.NeoSaffron
 import com.neofit.core.util.DateUtil
 import com.neofit.core.util.Format
 import com.neofit.feature.common.MiniBarChart
+import com.neofit.feature.common.MiniLineChart
 import com.neofit.feature.common.NeoCard
 import com.neofit.feature.common.SectionTitle
 
@@ -80,10 +81,10 @@ fun ProgressScreen(
                     SectionTitle(stringResource(R.string.prog_weight_history))
                     Spacer(Modifier.height(10.dp))
                     if (state.weights.size >= 2) {
-                        MiniBarChart(
+                        MiniLineChart(
                             values = state.weights.takeLast(7).map { it.weightKg },
                             labels = state.weights.takeLast(7).map { DateUtil.shortDate(it.dateEpochDay) },
-                            barColor = NeoSaffron,
+                            lineColor = NeoSaffron,
                         )
                     } else {
                         Text("Log your weight over time to see a trend.", color = MaterialTheme.colorScheme.onSurfaceVariant)

@@ -1,0 +1,10 @@
+<resources>
+    <color name="neo_saffron">#FF7A1A</color>
+    <color name="neo_green">#1B998B</color>
+    <color name="neo_berry">#E8505B</color>
+    <color name="neo_bg_light">#FFF7F0</color>
+    <color name="neo_bg_dark">#121212</color>
+    <color name="ic_launcher_bg">#FF7A1A</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+</resources>

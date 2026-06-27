@@ -1,0 +1,102 @@
+<resources>
+    <string name="app_name">Neo Fit</string>
+    <string name="app_tagline">Sehat, simple banayi</string>
+
+    <!-- Generic actions -->
+    <string name="action_continue">Continue</string>
+    <string name="action_next">Next</string>
+    <string name="action_back">Back</string>
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_add">Add</string>
+    <string name="action_done">Done</string>
+    <string name="action_skip">Skip</string>
+    <string name="action_retry">Retry</string>
+    <string name="action_edit">Edit</string>
+
+    <!-- Bottom nav -->
+    <string name="nav_home">Home</string>
+    <string name="nav_food">Food</string>
+    <string name="nav_exercise">Exercise</string>
+    <string name="nav_progress">Progress</string>
+    <string name="nav_profile">Profile</string>
+
+    <!-- Onboarding -->
+    <string name="onb_welcome_title">Welcome to Neo Fit</string>
+    <string name="onb_welcome_sub">Aapki sehat, aapke khaane ke hisaab se. Let\'s set you up.</string>
+    <string name="onb_choose_language">Choose your language</string>
+    <string name="onb_name">Your name</string>
+    <string name="onb_age">Age</string>
+    <string name="onb_sex">Sex</string>
+    <string name="onb_height">Height (cm)</string>
+    <string name="onb_weight">Current weight (kg)</string>
+    <string name="onb_target_weight">Target weight (kg)</string>
+    <string name="onb_activity">Activity level</string>
+    <string name="onb_diet">Dietary preference</string>
+    <string name="onb_goal">Wellness goal</string>
+    <string name="onb_region">Preferred food region</string>
+    <string name="onb_finish">Start my journey</string>
+
+    <!-- Dashboard -->
+    <string name="dash_greeting">Namaste</string>
+    <string name="dash_calories_consumed">Eaten</string>
+    <string name="dash_calories_burned">Burned</string>
+    <string name="dash_calories_remaining">Remaining</string>
+    <string name="dash_steps">Steps</string>
+    <string name="dash_streak">Day streak</string>
+    <string name="dash_weight">Weight</string>
+    <string name="dash_recommended">Recommended for you</string>
+    <string name="dash_quick_add">Quick add meal</string>
+    <string name="dash_quick_workout">Quick workout</string>
+    <string name="dash_hydration">Hydration</string>
+    <string name="dash_wellness">Wellness score</string>
+    <string name="dash_water_glass">+1 glass</string>
+
+    <!-- Food -->
+    <string name="food_log_title">Food log</string>
+    <string name="food_add_title">Add meal</string>
+    <string name="food_search_hint">Search dishes… (idli, rajma chawal, chai)</string>
+    <string name="food_breakfast">Breakfast</string>
+    <string name="food_lunch">Lunch</string>
+    <string name="food_dinner">Dinner</string>
+    <string name="food_snack">Snack</string>
+    <string name="food_portion">Portion</string>
+    <string name="food_photo_log">Log from photo</string>
+    <string name="food_repeat_last">Repeat last meal</string>
+    <string name="food_recent">Recent</string>
+    <string name="food_favourites">Favourites</string>
+    <string name="food_confidence_high">High confidence</string>
+    <string name="food_confidence_medium">Medium confidence</string>
+    <string name="food_confidence_rough">Rough estimate</string>
+    <string name="food_est_prefix">~</string>
+    <string name="food_est_note">Estimated based on standard serving</string>
+    <string name="food_manual_correct">Manually corrected</string>
+
+    <!-- Exercise -->
+    <string name="ex_plans_title">Exercise plans</string>
+    <string name="ex_start">Start workout</string>
+    <string name="ex_rest">Rest</string>
+    <string name="ex_complete">Mark complete</string>
+    <string name="ex_voice">Voice guidance</string>
+
+    <!-- Progress -->
+    <string name="prog_title">Progress</string>
+    <string name="prog_weight_history">Weight history</string>
+    <string name="prog_bmi">BMI</string>
+    <string name="prog_log_weight">Log weight</string>
+
+    <!-- Insights -->
+    <string name="insights_title">Insights</string>
+
+    <!-- Profile / Settings -->
+    <string name="profile_title">Profile &amp; settings</string>
+    <string name="profile_region_prefs">Region &amp; preferences</string>
+    <string name="profile_language">Language</string>
+    <string name="profile_disclaimer_title">Disclaimer</string>
+    <string name="disclaimer_text">This app supports general fitness and wellness. It does not replace professional medical or nutrition advice. Calorie values for many Indian dishes are approximations.</string>
+
+    <!-- States -->
+    <string name="state_loading">Loading…</string>
+    <string name="state_empty_food">No meals logged yet. Pehla meal add karein!</string>
+    <string name="state_error">Something went wrong</string>
+</resources>

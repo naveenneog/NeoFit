@@ -191,9 +191,13 @@ private fun MacroCard(data: DashboardSummary) {
             SectionTitle(stringResource(R.string.dash_macros_today))
             Spacer(Modifier.height(10.dp))
             Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth()) {
+                // Carb/fat guidance targets from a standard split of the calorie target
+                // (≈50% carbs, ≈28% fat) so all three macros show a target consistently.
+                val carbTarget = data.calorieTarget * 0.5f / 4f
+                val fatTarget = data.calorieTarget * 0.28f / 9f
                 MacroPill(stringResource(R.string.macro_protein), data.proteinConsumedG, data.proteinTargetG.toFloat(), ProteinColor)
-                MacroPill(stringResource(R.string.macro_carbs), data.carbsConsumedG, 0f, CarbColor)
-                MacroPill(stringResource(R.string.macro_fat), data.fatConsumedG, 0f, FatColor)
+                MacroPill(stringResource(R.string.macro_carbs), data.carbsConsumedG, carbTarget, CarbColor)
+                MacroPill(stringResource(R.string.macro_fat), data.fatConsumedG, fatTarget, FatColor)
             }
         }
     }

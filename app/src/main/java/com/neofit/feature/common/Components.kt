@@ -41,7 +41,7 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import com.neofit.domain.model.ConfidenceLevel
 import com.neofit.core.designsystem.NeoAmber
-import com.neofit.core.designsystem.NeoBerry
+import com.neofit.core.designsystem.NeoSaffron
 import com.neofit.core.designsystem.NeoGreen
 import kotlin.math.abs
 
@@ -79,7 +79,7 @@ fun ConfidenceChip(level: ConfidenceLevel, modifier: Modifier = Modifier) {
     val (color, label) = when (level) {
         ConfidenceLevel.HIGH -> NeoGreen to "High confidence"
         ConfidenceLevel.MEDIUM -> NeoAmber to "Medium confidence"
-        ConfidenceLevel.ROUGH -> NeoBerry to "Rough estimate"
+        ConfidenceLevel.ROUGH -> NeoSaffron to "Rough estimate"
     }
     Surface(color = color.copy(alpha = 0.15f), shape = RoundedCornerShape(50), modifier = modifier) {
         Row(

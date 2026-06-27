@@ -145,6 +145,7 @@ private fun Component(label: String, value: Int, max: Int) {
         LinearProgressIndicator(
             progress = { if (max > 0) value.toFloat() / max else 0f },
             modifier = Modifier.fillMaxWidth(),
+            drawStopIndicator = {},
         )
     }
 }

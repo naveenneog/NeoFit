@@ -167,6 +167,7 @@ private fun GoalProgressCard(
                     .clip(RoundedCornerShape(6.dp)),
                 color = MaterialTheme.colorScheme.primary,
                 trackColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.15f),
+                drawStopIndicator = {},
             )
             Spacer(Modifier.height(8.dp))
             Row(

@@ -3,90 +3,113 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Neo Fit — Indian Health &amp; Fitness, made simple</title>
-<meta name="description" content="Neo Fit is a science-informed health &amp; fitness app tailored to Indian food and lifestyle — calorie tracking, regional dishes, workouts, and wellness. Free for non-commercial use." />
+<title>Neo Fit — Indian Health &amp; Fitness, powered by AI</title>
+<meta name="description" content="Neo Fit: a science-informed Indian health &amp; fitness app. 22 Indian languages, AI-generated food photos (gpt-image-2), AI exercise videos (Sora-2) and on-device food recognition. Free for non-commercial use." />
 <link rel="icon" href="img/app-icon.png" />
-<meta property="og:title" content="Neo Fit — Indian Health &amp; Fitness" />
-<meta property="og:description" content="Track Indian meals, calories, activity and wellness. Open-source, free for non-commercial use." />
+<meta property="og:title" content="Neo Fit — Indian Health &amp; Fitness, powered by AI" />
+<meta property="og:description" content="22 Indian languages · AI food photos · AI exercise videos · on-device food recognition." />
 <meta property="og:image" content="img/hero.png" />
 <style>
   :root{
     --saffron:#FF7A1A; --saffron-d:#E26500; --green:#1B998B; --berry:#E8505B;
-    --amber:#FBBF24; --ink:#1F2430; --cloud:#FFF7F0; --muted:#6b6256;
+    --amber:#FBBF24; --violet:#8B5CF6; --ink:#1B1822; --cloud:#FFF7F0; --muted:#6b6256;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    color:var(--ink);background:var(--cloud);line-height:1.6;-webkit-font-smoothing:antialiased}
+    color:var(--ink);background:var(--cloud);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   a{color:var(--saffron-d);text-decoration:none}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
   /* nav */
-  nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(10px);
-    background:rgba(255,247,240,.82);border-bottom:1px solid #f0e1d3}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);
+    background:rgba(255,247,240,.8);border-bottom:1px solid #f0e1d3}
   nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
   .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem}
   .brand img{width:34px;height:34px;border-radius:9px}
-  .nav-links a{margin-left:20px;color:var(--ink);font-weight:600;font-size:.95rem}
+  .nav-links a{margin-left:18px;color:var(--ink);font-weight:600;font-size:.93rem}
   .nav-links a:hover{color:var(--saffron-d)}
-  /* hero */
-  .hero{position:relative;overflow:hidden;
-    background:linear-gradient(135deg,#FF8A33,#E8505B 60%,#8B5CF6);color:#fff}
-  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center;
-    padding:70px 22px 80px}
-  .hero h1{font-size:3rem;line-height:1.08;font-weight:900;letter-spacing:-.5px}
-  .hero p.lead{font-size:1.2rem;margin-top:16px;opacity:.96;max-width:36ch}
-  .hero .tag{display:inline-block;background:rgba(255,255,255,.18);padding:6px 14px;border-radius:999px;
-    font-weight:700;font-size:.82rem;letter-spacing:.4px;margin-bottom:18px}
-  .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
-  .btn{display:inline-flex;align-items:center;gap:9px;padding:14px 24px;border-radius:14px;
-    font-weight:800;font-size:1rem;transition:transform .15s ease,box-shadow .15s ease}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:14px;
+    font-weight:800;font-size:.98rem;transition:transform .15s ease,box-shadow .15s ease;border:none;cursor:pointer}
   .btn:hover{transform:translateY(-2px)}
   .btn-primary{background:#fff;color:var(--saffron-d);box-shadow:0 10px 24px rgba(0,0,0,.18)}
   .btn-ghost{background:rgba(255,255,255,.16);color:#fff;border:1.5px solid rgba(255,255,255,.55)}
-  .hero-art{position:relative}
-  .hero-art img.food{width:100%;border-radius:20px;box-shadow:0 24px 60px rgba(0,0,0,.32);
-    transform:rotate(2deg)}
-  .hero-art img.phone{position:absolute;width:38%;right:-6%;bottom:-10%;border-radius:22px;
-    box-shadow:0 22px 50px rgba(0,0,0,.4);border:5px solid #fff;transform:rotate(-4deg)}
-  .pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
-  .pill{background:rgba(255,255,255,.16);padding:6px 12px;border-radius:999px;font-size:.8rem;font-weight:600}
+  /* hero */
+  .hero{position:relative;overflow:hidden;color:#fff;
+    background:linear-gradient(120deg,#FF8A33,#E8505B 42%,#8B5CF6 82%);
+    background-size:200% 200%;animation:flow 14s ease infinite}
+  @keyframes flow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center;padding:64px 22px 30px}
+  .hero h1{font-size:3.1rem;line-height:1.06;font-weight:900;letter-spacing:-.5px}
+  .hero .lead{font-size:1.18rem;margin-top:16px;opacity:.96;max-width:38ch}
+  .hero .tag{display:inline-block;background:rgba(255,255,255,.2);padding:6px 14px;border-radius:999px;
+    font-weight:700;font-size:.8rem;letter-spacing:.4px;margin-bottom:16px}
+  .cta{display:flex;gap:13px;flex-wrap:wrap;margin-top:26px}
+  .pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+  .pill{background:rgba(255,255,255,.16);padding:6px 12px;border-radius:999px;font-size:.78rem;font-weight:600}
+  .phones{position:relative;height:520px}
+  .phones img{position:absolute;border-radius:26px;border:6px solid #fff;box-shadow:0 26px 60px rgba(0,0,0,.4)}
+  .phones img.p1{width:54%;left:8%;top:6%;transform:rotate(-5deg);z-index:2;animation:floaty 6s ease-in-out infinite}
+  .phones img.p2{width:54%;right:4%;top:20%;transform:rotate(5deg);z-index:1;animation:floaty 7s ease-in-out infinite reverse}
+  @keyframes floaty{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-14px) rotate(-5deg)}}
+  /* marquee gallery */
+  .gallery{padding:34px 0 10px;background:#fff}
+  .marquee{display:flex;gap:16px;width:max-content;animation:scrollx 38s linear infinite}
+  .marquee.rev{animation-direction:reverse;margin-top:16px}
+  .marquee:hover{animation-play-state:paused}
+  .marquee img{width:210px;height:210px;object-fit:cover;border-radius:18px;box-shadow:0 10px 24px rgba(31,36,48,.14)}
+  .mask{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+  @keyframes scrollx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .gallery .cap{text-align:center;color:var(--muted);font-size:.92rem;margin-top:18px}
   /* sections */
-  section{padding:64px 0}
-  h2{font-size:2rem;font-weight:850;text-align:center;letter-spacing:-.3px}
-  .sub{text-align:center;color:var(--muted);max-width:60ch;margin:10px auto 0}
+  section{padding:62px 0}
+  h2{font-size:2.1rem;font-weight:850;text-align:center;letter-spacing:-.3px}
+  .sub{text-align:center;color:var(--muted);max-width:62ch;margin:10px auto 0}
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:42px}
   .card{background:#fff;border:1px solid #f0e3d6;border-radius:18px;padding:24px;
-    box-shadow:0 6px 18px rgba(31,36,48,.05);transition:transform .15s ease}
-  .card:hover{transform:translateY(-4px)}
-  .card .ic{font-size:1.8rem}
+    box-shadow:0 6px 18px rgba(31,36,48,.05);transition:transform .18s ease,box-shadow .18s ease}
+  .card:hover{transform:translateY(-5px);box-shadow:0 16px 34px rgba(31,36,48,.12)}
+  .card .ic{font-size:1.9rem}
   .card h3{margin:12px 0 6px;font-size:1.12rem}
-  .card p{color:var(--muted);font-size:.96rem}
-  /* shots */
-  .shots{background:linear-gradient(180deg,#fff,#FFF1E6)}
-  .shot-row{display:flex;gap:18px;overflow-x:auto;padding:42px 0 8px;scroll-snap-type:x mandatory}
-  .shot{flex:0 0 auto;width:230px;scroll-snap-align:center}
-  .shot img{width:100%;border-radius:22px;border:6px solid #fff;box-shadow:0 14px 34px rgba(31,36,48,.16)}
-  .shot span{display:block;text-align:center;margin-top:10px;font-weight:700;color:var(--muted);font-size:.9rem}
-  /* regions */
+  .card p{color:var(--muted);font-size:.95rem}
+  .badge{display:inline-block;background:#FFE9D6;color:var(--saffron-d);font-weight:800;font-size:.72rem;
+    padding:3px 9px;border-radius:999px;margin-bottom:8px;letter-spacing:.3px}
+  /* languages */
+  .langs{background:linear-gradient(180deg,#FFF1E6,#fff)}
   .chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:34px}
   .chip{background:#fff;border:1.5px solid var(--saffron);color:var(--saffron-d);
-    padding:9px 16px;border-radius:999px;font-weight:700;font-size:.92rem}
+    padding:9px 16px;border-radius:999px;font-weight:700;font-size:1rem;transition:transform .15s}
+  .chip:hover{transform:scale(1.08);background:var(--saffron);color:#fff}
+  /* shots */
+  .shots{background:#fff}
+  .shot-row{display:flex;gap:18px;overflow-x:auto;padding:42px 4px 12px;scroll-snap-type:x mandatory}
+  .shot{flex:0 0 auto;width:236px;scroll-snap-align:center}
+  .shot img{width:100%;border-radius:22px;border:6px solid #fff;box-shadow:0 14px 34px rgba(31,36,48,.16);
+    transition:transform .2s}
+  .shot img:hover{transform:translateY(-6px) scale(1.02)}
+  .shot span{display:block;text-align:center;margin-top:10px;font-weight:700;color:var(--muted);font-size:.9rem}
+  /* azure */
+  .azure{background:var(--ink);color:#e9e1d6}
+  .azure h2{color:#fff}.azure .sub{color:#bcb3a6}
+  .agrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+  .acard{background:#262130;border:1px solid #352e40;border-radius:16px;padding:20px;text-align:center}
+  .acard .ic{font-size:1.8rem}.acard h4{margin:8px 0 4px;color:#fff;font-size:1rem}
+  .acard p{color:#b3aa9d;font-size:.85rem}
   /* download */
   .download{background:linear-gradient(135deg,var(--green),#0f766e);color:#fff;text-align:center}
-  .download h2{color:#fff}
-  .download .sub{color:rgba(255,255,255,.9)}
+  .download h2{color:#fff}.download .sub{color:rgba(255,255,255,.9)}
   .badges{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
   .meta{margin-top:18px;font-size:.86rem;opacity:.85}
-  /* footer */
-  footer{background:var(--ink);color:#cfc6ba;padding:40px 0;font-size:.9rem}
+  footer{background:#141019;color:#cfc6ba;padding:40px 0;font-size:.9rem}
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
   footer a{color:#ffd9bf}
   .disclaim{background:#fff6ee;border:1px dashed var(--saffron);border-radius:14px;
-    padding:16px 20px;color:var(--muted);max-width:760px;margin:34px auto 0;font-size:.9rem;text-align:center}
-  @media(max-width:820px){
-    .hero .wrap{grid-template-columns:1fr;padding:54px 22px 64px}
-    .hero h1{font-size:2.3rem}.grid{grid-template-columns:1fr}
-    .hero-art img.phone{display:none}.nav-links{display:none}
+    padding:16px 20px;color:var(--muted);max-width:780px;margin:32px auto 0;font-size:.9rem;text-align:center}
+  @media(max-width:860px){
+    .hero .wrap{grid-template-columns:1fr;padding:48px 22px 20px}.hero h1{font-size:2.4rem}
+    .phones{height:430px}.grid,.agrid{grid-template-columns:1fr}.nav-links{display:none}
   }
 </style>
 </head>
@@ -94,11 +117,12 @@
 
 <nav>
   <div class="wrap">
-    <div class="brand"><img src="img/app-icon.png" alt="Neo Fit icon" /> Neo&nbsp;Fit</div>
+    <div class="brand"><img src="img/app-icon.png" alt="Neo Fit" /> Neo&nbsp;Fit</div>
     <div class="nav-links">
       <a href="#features">Features</a>
+      <a href="#languages">Languages</a>
+      <a href="#ai">Azure AI</a>
       <a href="#screens">Screens</a>
-      <a href="#regions">Indian food</a>
       <a href="#download">Download</a>
       <a href="https://github.com/naveenneog/NeoFit">GitHub</a>
     </div>
@@ -108,79 +132,108 @@
 <header class="hero">
   <div class="wrap">
     <div>
-      <span class="tag">🇮🇳 Made for Indian food &amp; lifestyle</span>
+      <span class="tag">✨ v1.1 · powered by Azure AI</span>
       <h1>Sehat, simple banayi.</h1>
-      <p class="lead">Track Indian meals, calories, activity and wellness — science-informed,
-        honest about estimates, and friendly to home &amp; street food.</p>
+      <p class="lead">A science-informed Indian health &amp; fitness app — with AI-generated food
+        photos, AI exercise videos, on-device food recognition, and <b>22 Indian languages</b>.</p>
       <div class="cta">
         <a class="btn btn-primary" href="https://github.com/naveenneog/NeoFit/releases/latest/download/NeoFit-v1.1.0.apk">⬇️ Download APK</a>
         <a class="btn btn-ghost" href="https://github.com/naveenneog/NeoFit">⭐ View on GitHub</a>
       </div>
       <div class="pills">
-        <span class="pill">Kotlin · Jetpack Compose</span>
-        <span class="pill">Offline-first</span>
-        <span class="pill">Health Connect</span>
-        <span class="pill">Multilingual</span>
+        <span class="pill">🇮🇳 22 languages</span>
+        <span class="pill">🍛 AI food photos</span>
+        <span class="pill">🏋️ AI exercise videos</span>
+        <span class="pill">📷 On-device recognition</span>
+        <span class="pill">🔒 Offline-first</span>
       </div>
     </div>
-    <div class="hero-art">
-      <img class="food" src="img/hero.png" alt="Healthy Indian thali" />
-      <img class="phone" src="img/screen-dashboard.png" alt="Neo Fit dashboard" />
+    <div class="phones">
+      <img class="p1" src="img/screen-dashboard.png" alt="Neo Fit dashboard in Kannada" />
+      <img class="p2" src="img/screen-runner.png" alt="AI exercise video" />
     </div>
   </div>
 </header>
 
+<!-- LIVE AI FOOD PHOTO GALLERY -->
+<div class="gallery">
+  <div class="mask">
+    <div class="marquee" id="m1"></div>
+    <div class="marquee rev" id="m2"></div>
+  </div>
+  <p class="cap">🍽️ Every dish photo above is generated with <b>Azure gpt-image-2</b> and bundled in the app.</p>
+</div>
+
 <section id="features">
   <div class="wrap">
-    <h2>Built around how India eats</h2>
-    <p class="sub">From idli &amp; rajma chawal to momos and litti chokha — with calorie estimates that
-      tell you how confident they are.</p>
+    <h2 class="reveal">Built around how India eats &amp; moves</h2>
+    <p class="sub reveal">From idli &amp; rajma chawal to momos and litti chokha — honest about
+      estimates, friendly to home &amp; street food.</p>
     <div class="grid">
-      <div class="card"><div class="ic">🍛</div><h3>Indian food intelligence</h3>
-        <p>A 70+ dish knowledge base across South, North, North-East, West, Central, East &amp;
-        pan-Indian styles — home meals, street food, thalis, sweets &amp; beverages.</p></div>
-      <div class="card"><div class="ic">🎯</div><h3>Honest calorie estimates</h3>
-        <p>Portion + cooking-style aware, with <b>High / Medium / Rough</b> confidence and a plain
-        explanation. Approximate values show a <b>~</b>. Correct anything, anytime.</p></div>
-      <div class="card"><div class="ic">👟</div><h3>Activity &amp; calories burned</h3>
-        <p>Syncs steps from Health Connect, with a smart estimate fallback so your dashboard always
-        works.</p></div>
-      <div class="card"><div class="ic">🏋️</div><h3>Goal-based workouts</h3>
-        <p>Seven plans with step-by-step instructions, a live timer, <b>voice guidance</b> and
-        generated pose images — no equipment needed.</p></div>
-      <div class="card"><div class="ic">📈</div><h3>Weight &amp; wellness</h3>
-        <p>BMI, weight trend, and a transparent 0–100 wellness score you can see the breakdown of.</p></div>
-      <div class="card"><div class="ic">🗣️</div><h3>Speaks your language</h3>
-        <p>Native dish names with Hinglish / Kanglish flavour. English &amp; Hindi UI, more on the way.</p></div>
+      <div class="card reveal"><div class="ic">🍛</div><span class="badge">gpt-image-2</span>
+        <h3>AI food photography</h3><p>Real, appetising photos for 70+ Indian dishes across every
+        region — generated with Azure gpt-image-2 and bundled offline.</p></div>
+      <div class="card reveal"><div class="ic">🏋️</div><span class="badge">Sora-2</span>
+        <h3>AI exercise videos</h3><p>Short looping demo videos for every workout move, generated
+        with Azure Sora-2 and streamed in the guided runner — with voice &amp; a timer.</p></div>
+      <div class="card reveal"><div class="ic">📷</div><span class="badge">on-device</span>
+        <h3>Snap to log</h3><p>On-device food recognition (Google ML Kit, offline) suggests Indian
+        dishes from a photo — you confirm and edit. Nothing leaves your phone.</p></div>
+      <div class="card reveal"><div class="ic">🎯</div>
+        <h3>Honest calorie estimates</h3><p>Portion + cooking-style aware, with High/Medium/Rough
+        confidence and a plain explanation. Approximate values show a <b>~</b>.</p></div>
+      <div class="card reveal"><div class="ic">🥗</div><span class="badge">new</span>
+        <h3>Veg &amp; non-veg, your way</h3><p>Flexitarian-friendly: pick the weekdays you keep
+        vegetarian and suggestions adapt — many of us do veg Tuesdays or Shravan.</p></div>
+      <div class="card reveal"><div class="ic">📈</div>
+        <h3>Weight &amp; wellness</h3><p>BMI, weight trend, steps via Health Connect, and a
+        transparent 0–100 wellness score you can see the breakdown of.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="languages" class="langs">
+  <div class="wrap">
+    <h2 class="reveal">Speaks your language — all 22</h2>
+    <p class="sub reveal">Every screen, in the official languages of India, with native dish names.
+      Tap a language in the app and the whole UI switches instantly.</p>
+    <div class="chips reveal">
+      <span class="chip">English</span><span class="chip">हिन्दी</span><span class="chip">বাংলা</span>
+      <span class="chip">తెలుగు</span><span class="chip">मराठी</span><span class="chip">தமிழ்</span>
+      <span class="chip">اردو</span><span class="chip">ગુજરાતી</span><span class="chip">ಕನ್ನಡ</span>
+      <span class="chip">ଓଡ଼ିଆ</span><span class="chip">മലയാളം</span><span class="chip">ਪੰਜਾਬੀ</span>
+      <span class="chip">অসমীয়া</span><span class="chip">मैथिली</span><span class="chip">संस्कृतम्</span>
+      <span class="chip">کٲشُر</span><span class="chip">नेपाली</span><span class="chip">कोंकणी</span>
+      <span class="chip">سنڌي</span><span class="chip">डोगरी</span><span class="chip">মৈতৈলোন্</span>
+      <span class="chip">बड़ो</span><span class="chip">ᱥᱟᱱᱛᱟᱲᱤ</span>
+      <span class="chip">+ Hinglish</span><span class="chip">+ Kanglish</span>
+    </div>
+  </div>
+</section>
+
+<section id="ai" class="azure">
+  <div class="wrap">
+    <h2 class="reveal">Made with Azure AI</h2>
+    <p class="sub reveal">Neo Fit uses Microsoft Azure AI Foundry models to create rich, offline-first content.</p>
+    <div class="agrid">
+      <div class="acard reveal"><div class="ic">🖼️</div><h4>gpt-image-2</h4><p>Realistic photos for the Indian dish library.</p></div>
+      <div class="acard reveal"><div class="ic">🎬</div><h4>Sora-2</h4><p>Short looping exercise demonstration videos.</p></div>
+      <div class="acard reveal"><div class="ic">🗣️</div><h4>GPT (gpt-4o-mini)</h4><p>Native translations into all 22 languages.</p></div>
+      <div class="acard reveal"><div class="ic">📱</div><h4>ML Kit (on-device)</h4><p>Offline food recognition from a photo.</p></div>
     </div>
   </div>
 </section>
 
 <section id="screens" class="shots">
   <div class="wrap">
-    <h2>Take a look</h2>
-    <p class="sub">A clean, colourful Material 3 experience in light &amp; dark.</p>
+    <h2 class="reveal">Take a look</h2>
+    <p class="sub reveal">A clean, colourful Material 3 experience — here in Kannada.</p>
     <div class="shot-row">
-      <div class="shot"><img src="img/screen-onboarding.png" alt="Onboarding"><span>Pick your language</span></div>
-      <div class="shot"><img src="img/screen-dashboard.png" alt="Dashboard"><span>Daily dashboard</span></div>
-      <div class="shot"><img src="img/screen-search.png" alt="Food search"><span>Search Indian dishes</span></div>
-      <div class="shot"><img src="img/screen-estimate.png" alt="Calorie estimate"><span>Transparent estimates</span></div>
-      <div class="shot"><img src="img/screen-exercise.png" alt="Exercise plans"><span>Workout plans</span></div>
-      <div class="shot"><img src="img/screen-runner.png" alt="Workout runner"><span>Guided workout</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="regions">
-  <div class="wrap">
-    <h2>Region-aware, never stereotypical</h2>
-    <p class="sub">Neo Fit infers a broad regional food profile from what you log — advisory only,
-      always overridable, and it explains why.</p>
-    <div class="chips">
-      <span class="chip">South India</span><span class="chip">North India</span>
-      <span class="chip">North-East India</span><span class="chip">West India</span>
-      <span class="chip">Central India</span><span class="chip">East India</span>
-      <span class="chip">Pan-Indian</span>
+      <div class="shot"><img src="img/screen-languages.png" alt="Pick your language"><span>22 languages</span></div>
+      <div class="shot"><img src="img/screen-dashboard.png" alt="Dashboard in Kannada"><span>Localised dashboard</span></div>
+      <div class="shot"><img src="img/screen-search.png" alt="Indian dishes with AI photos"><span>AI food photos</span></div>
+      <div class="shot"><img src="img/screen-recognition.png" alt="On-device recognition"><span>Snap to log</span></div>
+      <div class="shot"><img src="img/screen-runner.png" alt="AI exercise video"><span>AI workout videos</span></div>
     </div>
   </div>
 </section>
@@ -193,7 +246,7 @@
       <a class="btn btn-primary" href="https://github.com/naveenneog/NeoFit/releases/latest/download/NeoFit-v1.1.0.apk">⬇️ Download APK (v1.1.0)</a>
       <a class="btn btn-ghost" href="https://github.com/naveenneog/NeoFit/releases">All releases</a>
     </div>
-    <p class="meta">Android 8.0 (API 26)+ · ~21 MB · sideload the APK (enable “Install unknown apps”).</p>
+    <p class="meta">Android 8.0 (API 26)+ · sideload the APK (enable “Install unknown apps”).</p>
   </div>
 </section>
 
@@ -209,10 +262,28 @@
     <div>
       <a href="https://github.com/naveenneog/NeoFit">Source</a> ·
       <a href="https://github.com/naveenneog/NeoFit/blob/main/LICENSE">License</a> ·
-      <a href="https://github.com/naveenneog/NeoFit/blob/main/README.md">Docs</a>
+      <a href="https://github.com/naveenneog/NeoFit/blob/main/CHANGELOG.md">Changelog</a>
     </div>
   </div>
 </footer>
 
+<script>
+  // Live food photo marquee (duplicated for seamless loop)
+  const foods = ["idli","dosa","masala_dosa","chicken_biryani","gulab_jamun","samosa",
+    "paneer_butter_masala","chole_bhature","vada_pav","jalebi","masala_chai","rajma_chawal",
+    "dhokla","pav_bhaji","ragi_mudde"];
+  const labels = {idli:"Idli",dosa:"Dosa",masala_dosa:"Masala Dosa",chicken_biryani:"Biryani",
+    gulab_jamun:"Gulab Jamun",samosa:"Samosa",paneer_butter_masala:"Paneer Butter Masala",
+    chole_bhature:"Chole Bhature",vada_pav:"Vada Pav",jalebi:"Jalebi",masala_chai:"Masala Chai",
+    rajma_chawal:"Rajma Chawal",dhokla:"Dhokla",pav_bhaji:"Pav Bhaji",ragi_mudde:"Ragi Mudde"};
+  function fill(el, list){ (list.concat(list)).forEach(f=>{
+    const im=document.createElement('img'); im.src="img/food/"+f+".jpg"; im.alt=labels[f]||f;
+    im.loading="lazy"; el.appendChild(im); }); }
+  fill(document.getElementById('m1'), foods);
+  fill(document.getElementById('m2'), foods.slice().reverse());
+  // Scroll reveal
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
 </body>
 </html>

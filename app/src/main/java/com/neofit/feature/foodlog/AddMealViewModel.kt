@@ -38,6 +38,7 @@ data class AddMealState(
     val manuallyCorrected: Boolean = false,
     val saving: Boolean = false,
     val saved: Boolean = false,
+    val isDirty: Boolean = false,
 ) {
     val portionOptions: List<PortionSize> = PortionSize.COMMON
     val cookingOptions: List<CookingStyle> = CookingStyle.entries
@@ -57,6 +58,19 @@ class AddMealViewModel @Inject constructor(
     val state: StateFlow<AddMealState> = _state.asStateFlow()
 
     private var editingId: Long? = null
+
+    private data class FormSnapshot(
+        val name: String,
+        val category: MealCategory,
+        val portion: PortionSize,
+        val cooking: CookingStyle?,
+        val manualCalories: String,
+    )
+
+    private fun snapshotOf(s: AddMealState) =
+        FormSnapshot(s.name.trim(), s.category, s.portion, s.cooking, s.manualCalories)
+
+    private var baseline: FormSnapshot? = null
 
     init {
         val editId = savedStateHandle.get<Long>("mealId") ?: -1L
@@ -99,10 +113,11 @@ class AddMealViewModel @Inject constructor(
                 }
             }
             recompute()
+            baseline = snapshotOf(_state.value)
         }
     }
 
-    fun setName(value: String) { _state.value = _state.value.copy(name = value) }
+    fun setName(value: String) { _state.value = _state.value.copy(name = value); recompute() }
 
     fun setCategory(value: MealCategory) { _state.value = _state.value.copy(category = value); recompute() }
 
@@ -128,6 +143,8 @@ class AddMealViewModel @Inject constructor(
             else -> estimateMeal.forUnknown(s.category, s.portion, s.manualCalories.toIntOrNull())
         }
         _state.value = _state.value.copy(estimate = estimate)
+        val dirty = baseline?.let { snapshotOf(_state.value) != it } ?: false
+        _state.value = _state.value.copy(isDirty = dirty)
     }
 
     fun save(onDone: () -> Unit) {

@@ -63,6 +63,10 @@
     <string name="food_search_title">Search dishes</string>
     <string name="meal_added_toast">Meal added ✓</string>
     <string name="meal_updated_toast">Meal updated ✓</string>
+    <string name="discard_title">Discard changes?</string>
+    <string name="discard_message">Your meal changes haven\'t been saved yet.</string>
+    <string name="discard_confirm">Discard</string>
+    <string name="discard_keep">Keep editing</string>
     <string name="food_recents">Recently logged</string>
     <string name="food_quick_added">Added %1$s ✓</string>
     <string name="food_breakfast">Breakfast</string>

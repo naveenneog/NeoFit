@@ -76,7 +76,7 @@ fun ProgressScreen(
                     Column {
                         Text(stringResource(R.string.dash_weight), style = MaterialTheme.typography.labelLarge)
                         Text(Format.weight(state.currentWeightKg), style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
-                        Text("Goal ${Format.weight(state.targetWeightKg)}", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text(stringResource(R.string.prog_goal_goal, Format.weight(state.targetWeightKg)), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                 }
             }
@@ -100,7 +100,7 @@ fun ProgressScreen(
                             lineColor = NeoSaffron,
                         )
                     } else {
-                        Text("Log your weight over time to see a trend.", color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text(stringResource(R.string.prog_weight_empty), color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                     Spacer(Modifier.height(8.dp))
                     Row(Modifier.fillMaxWidth().clickable { onOpenWeight() }, horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
@@ -112,7 +112,7 @@ fun ProgressScreen(
 
             NeoCard(Modifier.fillMaxWidth()) {
                 Column {
-                    SectionTitle("Weekly movement")
+                    SectionTitle(stringResource(R.string.prog_weekly_movement))
                     Spacer(Modifier.height(10.dp))
                     MiniBarChart(
                         values = state.weeklySteps.map { it.steps.toFloat() },

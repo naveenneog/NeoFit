@@ -91,7 +91,7 @@ fun FoodLogScreen(
                 NeoCard(Modifier.fillMaxWidth()) {
                     Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
                         Column(Modifier.weight(1f)) {
-                            Text("Today", style = MaterialTheme.typography.labelLarge)
+                            Text(stringResource(R.string.food_today), style = MaterialTheme.typography.labelLarge)
                             Text("${state.totalKcal} kcal", style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
                         }
                         IconButton(onClick = onSearch) { Icon(Icons.Filled.Search, contentDescription = "Search") }

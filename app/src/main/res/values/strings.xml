@@ -84,6 +84,8 @@
     <string name="food_est_prefix">~</string>
     <string name="food_est_note">Estimated based on standard serving</string>
     <string name="food_manual_correct">Manually corrected</string>
+    <string name="food_today">Today</string>
+    <string name="meal_details">Details</string>
 
     <!-- Exercise -->
     <string name="ex_plans_title">Exercise plans</string>
@@ -91,6 +93,12 @@
     <string name="ex_rest">Rest</string>
     <string name="ex_complete">Mark complete</string>
     <string name="ex_voice">Voice guidance</string>
+    <string name="ex_plan_not_found">Plan not found</string>
+    <string name="ex_equipment">Equipment: %1$s</string>
+    <string name="ex_count">Exercises (%1$d)</string>
+    <string name="ex_targets">Targets: %1$s</string>
+    <string name="ex_next_up">Next up: %1$s</string>
+    <string name="ex_workout_complete">Workout complete!</string>
 
     <!-- Progress -->
     <string name="prog_title">Progress</string>
@@ -103,14 +111,27 @@
     <string name="prog_goal_remaining">%1$s to go</string>
     <string name="prog_goal_reached">Goal reached 🎉</string>
     <string name="prog_goal_set_target">Set a target weight in your profile to track progress.</string>
+    <string name="prog_weekly_movement">Weekly movement</string>
+    <string name="prog_weight_empty">Log your weight over time to see a trend.</string>
 
     <!-- Insights -->
     <string name="insights_title">Insights</string>
+    <string name="insights_calories_week">Calories this week</string>
+    <string name="insights_steps_week">Steps this week</string>
+    <string name="insights_nudges">Nudges</string>
+    <string name="insights_region_profile">Region profile: %1$s</string>
 
     <!-- Profile / Settings -->
     <string name="profile_title">Profile &amp; settings</string>
     <string name="profile_region_prefs">Region &amp; preferences</string>
     <string name="profile_language">Language</string>
+    <string name="profile_targets">Your targets</string>
+    <string name="target_calories">Calories</string>
+    <string name="target_steps">Steps</string>
+    <string name="profile_theme">Theme</string>
+    <string name="theme_system">System</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
     <string name="profile_disclaimer_title">Disclaimer</string>
     <string name="disclaimer_text">This app supports general fitness and wellness. It does not replace professional medical or nutrition advice. Calorie values for many Indian dishes are approximations.</string>
 

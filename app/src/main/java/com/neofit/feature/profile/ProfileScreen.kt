@@ -81,9 +81,13 @@ fun ProfileScreen(
 
             NeoCard(Modifier.fillMaxWidth()) {
                 Column {
-                    SectionTitle("Theme")
+                    SectionTitle(stringResource(R.string.profile_theme))
                     Spacer(Modifier.height(8.dp))
-                    val options = listOf<Pair<String, Boolean?>>("System" to null, "Light" to false, "Dark" to true)
+                    val options = listOf<Pair<String, Boolean?>>(
+                        stringResource(R.string.theme_system) to null,
+                        stringResource(R.string.theme_light) to false,
+                        stringResource(R.string.theme_dark) to true,
+                    )
                     SingleChoiceChips(
                         options = options,
                         selected = options.firstOrNull { it.second == state.darkTheme } ?: options.first(),
@@ -130,12 +134,12 @@ private fun ProfileCard(profile: UserProfile) {
 private fun GoalCard(goal: Goal) {
     NeoCard(Modifier.fillMaxWidth()) {
         Column {
-            SectionTitle("Your targets")
+            SectionTitle(stringResource(R.string.profile_targets))
             Spacer(Modifier.height(8.dp))
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                Target("Calories", "${goal.dailyCalorieTarget}")
-                Target("Protein", "${goal.dailyProteinTargetG} g")
-                Target("Steps", "${goal.dailyStepTarget}")
+                Target(stringResource(R.string.target_calories), "${goal.dailyCalorieTarget}")
+                Target(stringResource(R.string.macro_protein), "${goal.dailyProteinTargetG} g")
+                Target(stringResource(R.string.target_steps), "${goal.dailyStepTarget}")
             }
             Spacer(Modifier.height(10.dp))
             Text(goal.rationale, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)

@@ -38,10 +38,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.neofit.R
 import com.neofit.domain.model.ExerciseItem
 import com.neofit.domain.model.ExercisePlan
 import com.neofit.feature.common.DishImage
@@ -88,7 +90,7 @@ fun ExerciseDetailScreen(
         },
     ) { inner ->
         if (plan == null) {
-            Box(Modifier.fillMaxSize().padding(inner), contentAlignment = Alignment.Center) { Text("Plan not found") }
+            Box(Modifier.fillMaxSize().padding(inner), contentAlignment = Alignment.Center) { Text(stringResource(R.string.ex_plan_not_found)) }
             return@Scaffold
         }
         val modifier = Modifier.fillMaxSize().padding(inner).padding(16.dp)
@@ -111,13 +113,13 @@ private fun PlanOverview(plan: ExercisePlan, modifier: Modifier, onStart: () -> 
                 color = MaterialTheme.colorScheme.primary,
             )
         }
-        item { Text("Equipment: ${plan.requiredEquipment.joinToString()}", style = MaterialTheme.typography.bodyMedium) }
+        item { Text(stringResource(R.string.ex_equipment, plan.requiredEquipment.joinToString()), style = MaterialTheme.typography.bodyMedium) }
         item {
             NeoCard(Modifier.fillMaxWidth()) {
                 Text("⚠️ ${plan.safetyNote}", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
         }
-        item { Text("Exercises (${plan.items.size})", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold) }
+        item { Text(stringResource(R.string.ex_count, plan.items.size), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold) }
         items(plan.items, key = { it.id }) { item ->
             NeoCard(Modifier.fillMaxWidth()) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
@@ -137,7 +139,7 @@ private fun PlanOverview(plan: ExercisePlan, modifier: Modifier, onStart: () -> 
                             color = MaterialTheme.colorScheme.primary,
                         )
                         if (item.targetMuscles.isNotEmpty()) {
-                            Text("Targets: ${item.targetMuscles.joinToString()}", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            Text(stringResource(R.string.ex_targets, item.targetMuscles.joinToString()), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
                         }
                     }
                 }
@@ -177,7 +179,7 @@ private fun RunnerView(
             fontWeight = FontWeight.Bold,
         )
         if (isRest && nextItem != null) {
-            Text("Next up: ${nextItem.name}", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
+            Text(stringResource(R.string.ex_next_up, nextItem.name), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
         }
         ExerciseMedia(
             videoUrl = media.videoUrl,
@@ -219,7 +221,7 @@ private fun RunnerView(
 private fun WorkoutSummary(calories: Int, completed: Int, total: Int, modifier: Modifier, onBack: () -> Unit) {
     Column(modifier, horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(16.dp)) {
         Text("🎉", style = MaterialTheme.typography.displayMedium)
-        Text("Workout complete!", style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
+        Text(stringResource(R.string.ex_workout_complete), style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
         Text("$completed of $total exercises done", style = MaterialTheme.typography.titleMedium)
         Text("🔥 ~$calories kcal burned", style = MaterialTheme.typography.titleLarge, color = MaterialTheme.colorScheme.primary)
         PrimaryButton("Done", onBack)

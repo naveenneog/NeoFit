@@ -72,7 +72,7 @@ fun InsightsScreen(
 
             NeoCard(Modifier.fillMaxWidth()) {
                 Column {
-                    SectionTitle("Calories this week")
+                    SectionTitle(stringResource(R.string.insights_calories_week))
                     Spacer(Modifier.height(10.dp))
                     MiniBarChart(
                         values = d.weeklyCalories.map { it.value.toFloat() },
@@ -84,7 +84,7 @@ fun InsightsScreen(
 
             NeoCard(Modifier.fillMaxWidth()) {
                 Column {
-                    SectionTitle("Steps this week")
+                    SectionTitle(stringResource(R.string.insights_steps_week))
                     Spacer(Modifier.height(10.dp))
                     MiniBarChart(
                         values = d.weeklySteps.map { it.steps.toFloat() },
@@ -97,7 +97,7 @@ fun InsightsScreen(
             NeoCard(Modifier.fillMaxWidth()) {
                 Column {
                     Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
-                        Text("Region profile: ${d.regionInsight.inferred.label}", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+                        Text(stringResource(R.string.insights_region_profile, d.regionInsight.inferred.label), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
                         ConfidenceChip(d.regionInsight.confidence)
                     }
                     Spacer(Modifier.height(6.dp))
@@ -106,7 +106,7 @@ fun InsightsScreen(
             }
 
             if (d.recommendations.isNotEmpty()) {
-                SectionTitle("Nudges")
+                SectionTitle(stringResource(R.string.insights_nudges))
                 d.recommendations.forEach { RecRow(it) }
             }
         }
@@ -117,7 +117,7 @@ fun InsightsScreen(
 private fun WellnessCard(w: WellnessSummary) {
     NeoCard(Modifier.fillMaxWidth()) {
         Column {
-            Text("Wellness score", style = MaterialTheme.typography.labelLarge)
+            Text(stringResource(R.string.dash_wellness), style = MaterialTheme.typography.labelLarge)
             Text("${w.score}/100", style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
             Spacer(Modifier.height(10.dp))
             Component("Consistency", w.consistencyScore, WellnessScoreEngine.CONSISTENCY_MAX)

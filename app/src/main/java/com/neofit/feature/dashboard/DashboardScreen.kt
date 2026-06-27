@@ -29,6 +29,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -40,6 +41,7 @@ import com.neofit.core.designsystem.CalorieEaten
 import com.neofit.core.designsystem.CalorieRemaining
 import com.neofit.core.designsystem.CarbColor
 import com.neofit.core.designsystem.FatColor
+import com.neofit.core.designsystem.NeoGreen
 import com.neofit.core.designsystem.ProteinColor
 import com.neofit.core.i18n.LocalAppLanguage
 import com.neofit.domain.model.DashboardSummary
@@ -50,6 +52,7 @@ import com.neofit.feature.common.LoadingState
 import com.neofit.feature.common.NeoCard
 import com.neofit.feature.common.RingProgress
 import com.neofit.feature.common.SectionTitle
+import com.neofit.feature.common.foodAssetUri
 import com.neofit.feature.common.signedKg
 import com.neofit.feature.navigation.Routes
 import com.neofit.core.util.Format
@@ -86,16 +89,29 @@ private fun DashboardContent(
         verticalArrangement = Arrangement.spacedBy(14.dp),
     ) {
         item {
-            Text(
-                "${stringResourceGreeting()} ${data.userName}".trim(),
-                style = MaterialTheme.typography.headlineMedium,
-                fontWeight = FontWeight.Bold,
-            )
-            Text(
-                "Aaj ka plan ready hai 💪",
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
+            Column {
+                Text(
+                    "${stringResourceGreeting()} ${data.userName}".trim(),
+                    style = MaterialTheme.typography.headlineMedium,
+                    fontWeight = FontWeight.Bold,
+                )
+                Text(
+                    stringResource(R.string.dash_subtitle),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                if (data.isVegDayToday) {
+                    Spacer(Modifier.height(6.dp))
+                    Surface(color = NeoGreen.copy(alpha = 0.16f), shape = RoundedCornerShape(50)) {
+                        Text(
+                            stringResource(R.string.dash_veg_day),
+                            modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp),
+                            color = NeoGreen,
+                            style = MaterialTheme.typography.labelMedium,
+                        )
+                    }
+                }
+            }
         }
 
         item { CalorieCard(data) }
@@ -105,7 +121,7 @@ private fun DashboardContent(
         item { HydrationWeightRow(data, onAddWater) }
 
         if (data.recommendations.isNotEmpty()) {
-            item { SectionTitle("For you") }
+            item { SectionTitle(stringResource(R.string.dash_for_you)) }
             items(data.recommendations) { rec -> RecommendationCard(rec, onNavigate) }
         }
 
@@ -145,13 +161,13 @@ private fun CalorieCard(data: DashboardSummary) {
                 progress = data.calorieProgress,
                 color = CalorieRemaining,
                 centerValue = "${data.caloriesRemaining}",
-                centerLabel = "kcal left",
+                centerLabel = stringResource(R.string.dash_kcal_left),
             )
             Spacer(Modifier.width(16.dp))
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 MetricLine(CalorieEaten, androidx.compose.ui.res.stringResource(R.string.dash_calories_consumed), "${data.caloriesConsumed}")
                 MetricLine(CalorieBurned, androidx.compose.ui.res.stringResource(R.string.dash_calories_burned), "${data.caloriesBurned}")
-                MetricLine(MaterialTheme.colorScheme.onSurfaceVariant, "Target", "${data.calorieTarget}")
+                MetricLine(MaterialTheme.colorScheme.onSurfaceVariant, stringResource(R.string.label_target), "${data.calorieTarget}")
             }
         }
     }
@@ -171,12 +187,12 @@ private fun MetricLine(color: Color, label: String, value: String) {
 private fun MacroCard(data: DashboardSummary) {
     NeoCard(Modifier.fillMaxWidth()) {
         Column {
-            SectionTitle("Macros today")
+            SectionTitle(stringResource(R.string.dash_macros_today))
             Spacer(Modifier.height(10.dp))
             Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth()) {
-                MacroPill("Protein", data.proteinConsumedG, data.proteinTargetG.toFloat(), ProteinColor)
-                MacroPill("Carbs", data.carbsConsumedG, 0f, CarbColor)
-                MacroPill("Fat", data.fatConsumedG, 0f, FatColor)
+                MacroPill(stringResource(R.string.macro_protein), data.proteinConsumedG, data.proteinTargetG.toFloat(), ProteinColor)
+                MacroPill(stringResource(R.string.macro_carbs), data.carbsConsumedG, 0f, CarbColor)
+                MacroPill(stringResource(R.string.macro_fat), data.fatConsumedG, 0f, FatColor)
             }
         }
     }
@@ -279,7 +295,7 @@ private fun RecommendedMealCard(food: FoodItem, displayName: String, onClick: ()
         modifier = Modifier.width(140.dp),
     ) {
         Column(Modifier.padding(8.dp)) {
-            DishImage(imageRef = null, label = food.nameEn, modifier = Modifier.fillMaxWidth().height(90.dp))
+            DishImage(imageRef = foodAssetUri(food.id), label = food.nameEn, modifier = Modifier.fillMaxWidth().height(90.dp))
             Spacer(Modifier.height(6.dp))
             Text(displayName, style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold, maxLines = 1)
             Text("~${food.caloriesKcal} kcal", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)

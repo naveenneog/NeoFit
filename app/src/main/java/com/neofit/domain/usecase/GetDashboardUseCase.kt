@@ -9,6 +9,8 @@ import com.neofit.domain.model.MealLog
 import com.neofit.domain.model.StepSummary
 import com.neofit.domain.model.UserProfile
 import com.neofit.domain.model.WeightEntry
+import com.neofit.domain.model.effectiveDiet
+import com.neofit.domain.model.isVegDay
 import com.neofit.domain.repository.ActivityRepository
 import com.neofit.domain.repository.ExerciseRepository
 import com.neofit.domain.repository.FoodRepository
@@ -72,7 +74,8 @@ class GetDashboardUseCase @Inject constructor(
         val stepTarget = profile?.dailyStepTarget?.takeIf { it > 0 } ?: 8000
         val waterTarget = profile?.dailyWaterGlassTarget?.takeIf { it > 0 } ?: 8
         val region = profile?.preferredRegion ?: FoodRegion.PAN_INDIA
-        val diet = profile?.dietaryPreference ?: DietaryPreference.VEGETARIAN
+        val diet = profile?.effectiveDiet() ?: DietaryPreference.VEGETARIAN
+        val isVegDay = profile?.isVegDay() ?: false
 
         val consumed = c.meals.sumOf { it.estimate.caloriesKcal }
         val protein = c.meals.fold(0f) { a, m -> a + m.estimate.proteinG }
@@ -147,6 +150,7 @@ class GetDashboardUseCase @Inject constructor(
             wellness = wellness,
             recommendations = recommendations,
             recommendedMeals = recommendedMeals,
+            isVegDayToday = isVegDay,
         )
     }
 

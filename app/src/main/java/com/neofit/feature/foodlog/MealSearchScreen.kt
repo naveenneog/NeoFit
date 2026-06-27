@@ -35,6 +35,7 @@ import com.neofit.core.i18n.LocalAppLanguage
 import com.neofit.domain.model.FoodItem
 import com.neofit.feature.common.DishImage
 import com.neofit.feature.common.NeoCard
+import com.neofit.feature.common.foodAssetUri
 
 @OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
 @Composable
@@ -79,7 +80,7 @@ fun MealSearchScreen(
 private fun FoodResultRow(food: FoodItem, displayName: String, onClick: () -> Unit) {
     NeoCard(Modifier.fillMaxWidth().clickable { onClick() }) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            DishImage(food.defaultImageUrl, food.nameEn, modifier = Modifier.size(48.dp))
+            DishImage(foodAssetUri(food.id), food.nameEn, modifier = Modifier.size(48.dp))
             Spacer(Modifier.width(12.dp))
             Column(Modifier.weight(1f)) {
                 Text(displayName, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)

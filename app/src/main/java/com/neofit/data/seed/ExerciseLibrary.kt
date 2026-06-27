@@ -22,6 +22,10 @@ object ExerciseLibrary {
             "side view, neutral light studio background, athletic wear, correct form highlighted, " +
             "flat modern vector style, no text, no branding."
 
+    // Sora-2 generated demo videos are published as a GitHub release and streamed on demand.
+    private const val VIDEO_BASE =
+        "https://github.com/naveenneog/NeoFit/releases/download/exercise-videos"
+
     private fun ex(
         id: String,
         name: String,
@@ -45,6 +49,7 @@ object ExerciseLibrary {
         targetMuscles = muscles,
         met = met,
         imagePrompt = promptFor(pose),
+        videoUrl = "$VIDEO_BASE/$id.mp4",
         voiceCue = voice,
     )
 

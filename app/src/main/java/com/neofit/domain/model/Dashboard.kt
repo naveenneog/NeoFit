@@ -25,6 +25,7 @@ data class DashboardSummary(
     val wellness: WellnessSummary,
     val recommendations: List<Recommendation>,
     val recommendedMeals: List<FoodItem>,
+    val isVegDayToday: Boolean = false,
 ) {
     val caloriesRemaining: Int get() = calorieTarget - caloriesConsumed + caloriesBurned
     val calorieProgress: Float

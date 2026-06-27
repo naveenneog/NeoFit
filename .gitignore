@@ -12,3 +12,7 @@ local.properties
 
 # Release artifact (published via GitHub Releases, not committed)
 /NeoFit-*.apk
+
+# Tooling outputs
+/tooling/videos/
+/tooling/*.log

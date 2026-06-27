@@ -1,5 +1,8 @@
 package com.neofit.domain.model
 
+import java.time.DayOfWeek
+import java.time.LocalDate
+
 /**
  * Single-user profile (id is fixed to [DEFAULT_ID]). Captured during onboarding
  * and editable later. Targets are derived but cached for quick dashboard reads.
@@ -18,6 +21,8 @@ data class UserProfile(
     val preferredRegion: FoodRegion,
     val language: AppLanguage,
     val foodRestrictions: List<String> = emptyList(),
+    /** Weekdays (java.time DayOfWeek value 1=Mon..7=Sun) the user keeps vegetarian. */
+    val vegDays: Set<Int> = emptySet(),
     val dailyCalorieTarget: Int = 0,
     val dailyProteinTargetG: Int = 0,
     val dailyStepTarget: Int = 8000,
@@ -33,6 +38,18 @@ data class UserProfile(
         const val DEFAULT_ID = 1L
     }
 }
+
+/** True if [day] is one of the user's vegetarian days. */
+fun UserProfile.isVegDay(day: DayOfWeek = LocalDate.now().dayOfWeek): Boolean =
+    vegDays.contains(day.value)
+
+/**
+ * The diet to use for suggestions today. On a veg day, non-veg/eggetarian/flexitarian
+ * users are treated as vegetarian (vegans stay vegan). Otherwise the base preference.
+ */
+fun UserProfile.effectiveDiet(day: DayOfWeek = LocalDate.now().dayOfWeek): DietaryPreference =
+    if (isVegDay(day) && dietaryPreference != DietaryPreference.VEGAN) DietaryPreference.VEGETARIAN
+    else dietaryPreference
 
 /**
  * A concrete, derived plan toward the user's goal. Computed from [UserProfile]

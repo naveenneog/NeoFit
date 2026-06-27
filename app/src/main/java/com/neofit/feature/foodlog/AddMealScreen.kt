@@ -68,13 +68,13 @@ fun AddMealScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             if (state.isCustom) {
-                LabeledTextField(state.name, viewModel::setName, "Dish name")
+                LabeledTextField(state.name, viewModel::setName, stringResource(R.string.food_dish_name))
             } else {
                 Text(state.name, style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
             }
 
             SingleChoiceChips(
-                title = "Meal",
+                title = stringResource(R.string.food_meal),
                 options = MealCategory.entries,
                 selected = state.category,
                 label = { it.label },
@@ -90,7 +90,7 @@ fun AddMealScreen(
             )
 
             SingleChoiceChips(
-                title = "Cooking style (optional)",
+                title = stringResource(R.string.food_cooking_optional),
                 options = state.cookingOptions,
                 selected = state.cooking,
                 label = { it.name.lowercase().replaceFirstChar { c -> c.uppercase() } },
@@ -100,7 +100,7 @@ fun AddMealScreen(
             LabeledTextField(
                 value = state.manualCalories,
                 onValueChange = viewModel::setManualCalories,
-                label = "Override calories (optional)",
+                label = stringResource(R.string.food_override_calories),
                 keyboardType = KeyboardType.Number,
             )
 

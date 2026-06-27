@@ -1,10 +1,9 @@
 package com.neofit
 
-import android.content.Context
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
@@ -15,19 +14,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.neofit.core.designsystem.NeoFitTheme
 import com.neofit.core.i18n.LocalAppLanguage
-import com.neofit.core.i18n.LocaleManager
 import com.neofit.feature.AppViewModel
 import com.neofit.feature.navigation.NeoFitNavGraph
 import com.neofit.feature.onboarding.SplashScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
-
-    override fun attachBaseContext(newBase: Context) {
-        // Apply the saved UI locale before resources are resolved.
-        super.attachBaseContext(LocaleManager.wrap(newBase))
-    }
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()

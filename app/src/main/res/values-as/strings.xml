@@ -1,0 +1,120 @@
+<resources>
+    <string name="app_name">Neo Fit</string>
+    <string name="app_tagline">স্বাস্থ্য, সহজে বনাও</string>
+
+    <!-- Generic actions -->
+    <string name="action_continue">অগ্ৰসর হওক</string>
+    <string name="action_next">পৰৱৰ্তী</string>
+    <string name="action_back">পিছলৈ</string>
+    <string name="action_save">সংৰক্ষণ কৰক</string>
+    <string name="action_cancel">বাতিল কৰক</string>
+    <string name="action_add">যোগ কৰক</string>
+    <string name="action_done">সম্পন্ন</string>
+    <string name="action_skip">এৰাই যাওক</string>
+    <string name="action_retry">পুনৰ চেষ্টা কৰক</string>
+    <string name="action_edit">সম্পাদনা কৰক</string>
+
+    <!-- Bottom nav -->
+    <string name="nav_home">ঘৰ</string>
+    <string name="nav_food">খাবাৰ</string>
+    <string name="nav_exercise">ব্যায়াম</string>
+    <string name="nav_progress">অগ্ৰগতি</string>
+    <string name="nav_profile">প্ৰফাইল</string>
+
+    <!-- Onboarding -->
+    <string name="onb_welcome_title">Neo Fit ত আপোনালোকক স্বাগতম</string>
+    <string name="onb_welcome_sub">আপোনাৰ স্বাস্থ্য, আপোনাৰ খাদ্যৰ ভিত্তিত। আপোনাক সাজু কৰোঁ আহক।</string>
+    <string name="onb_choose_language">আপোনাৰ ভাষা বাচনি কৰক</string>
+    <string name="onb_name">আপোনাৰ নাম</string>
+    <string name="onb_age">বয়স</string>
+    <string name="onb_sex">লিংগ</string>
+    <string name="onb_height">উচ্চতা (চেমি)</string>
+    <string name="onb_weight">বৰ্তমান ওজন (কেজি)</string>
+    <string name="onb_target_weight">লক্ষ্য ওজন (কেজি)</string>
+    <string name="onb_activity">ক্ৰিয়াকলাপৰ স্তৰ</string>
+    <string name="onb_diet">খাদ্যৰ পছন্দ</string>
+    <string name="onb_goal">স্বাস্থ্যৰ লক্ষ্য</string>
+    <string name="onb_region">পছন্দৰ খাদ্য অঞ্চল</string>
+    <string name="onb_finish">মোৰ যাত্ৰা আৰম্ভ কৰক</string>
+
+    <!-- Dashboard -->
+    <string name="dash_greeting">নমস্কাৰ</string>
+    <string name="dash_calories_consumed">খোৱা হৈছে</string>
+    <string name="dash_calories_burned">জ্বলাইছে</string>
+    <string name="dash_calories_remaining">অবশিষ্ট</string>
+    <string name="dash_steps">পদক্ষেপ</string>
+    <string name="dash_streak">দিনৰ শ্ৰেণী</string>
+    <string name="dash_weight">ওজন</string>
+    <string name="dash_recommended">আপোনাৰ বাবে পৰামৰ্শিত</string>
+    <string name="dash_quick_add">দ্রুত খাবাৰ যোগ কৰক</string>
+    <string name="dash_quick_workout">দ্রুত ব্যায়াম</string>
+    <string name="dash_hydration">পানী পৰিমাণ</string>
+    <string name="dash_wellness">স্বাস্থ্যৰ স্কোৰ</string>
+    <string name="dash_water_glass">+1 গ্লাছ</string>
+
+    <!-- Food -->
+    <string name="food_log_title">খাবাৰৰ লগ</string>
+    <string name="food_add_title">খাবাৰ যোগ কৰক</string>
+    <string name="food_search_hint">পদাৰ্থ বিচাৰক… (ইডলি, ৰাজমা চাৱাল, চাহ)</string>
+    <string name="food_breakfast">প্ৰাতঃৰাশ</string>
+    <string name="food_lunch">মধ্যাহ্নভোজন</string>
+    <string name="food_dinner">ৰাতিৰ আহাৰ</string>
+    <string name="food_snack">নাশতা</string>
+    <string name="food_portion">অংশ</string>
+    <string name="food_photo_log">ফটো পৰা লগ</string>
+    <string name="food_repeat_last">শেষ খাবাৰ পুনৰাবৃত্তি কৰক</string>
+    <string name="food_recent">সাম্প্রতিক</string>
+    <string name="food_favourites">প্ৰিয়</string>
+    <string name="food_confidence_high">উচ্চ আত্মবিশ্বাস</string>
+    <string name="food_confidence_medium">মধ্যম আত্মবিশ্বাস</string>
+    <string name="food_confidence_rough">আনুমানিক মূল্যায়ন</string>
+    <string name="food_est_prefix">~</string>
+    <string name="food_est_note">মানক পৰিবেশন ভিত্তিত অনুমানিত</string>
+    <string name="food_manual_correct">হাতৰে সংশোধিত</string>
+
+    <!-- Exercise -->
+    <string name="ex_plans_title">ব্যায়ামৰ পৰিকল্পনা</string>
+    <string name="ex_start">ব্যায়াম আৰম্ভ কৰক</string>
+    <string name="ex_rest">বিশ্ৰাম</string>
+    <string name="ex_complete">সম্পূৰ্ণ চিহ্নিত কৰক</string>
+    <string name="ex_voice">শব্দৰ দিশনির্দেশনা</string>
+
+    <!-- Progress -->
+    <string name="prog_title">অগ্ৰগতি</string>
+    <string name="prog_weight_history">ওজনৰ ইতিহাস</string>
+    <string name="prog_bmi">বিএমআই</string>
+    <string name="prog_log_weight">ওজন লগ কৰক</string>
+
+    <!-- Insights -->
+    <string name="insights_title">অন্তৰ্দৃষ্টি</string>
+
+    <!-- Profile / Settings -->
+    <string name="profile_title">প্ৰফাইল &amp; ছেটিংছ</string>
+    <string name="profile_region_prefs">অঞ্চল &amp; পছন্দ</string>
+    <string name="profile_language">ভাষা</string>
+    <string name="profile_disclaimer_title">অস্বীকৃতি</string>
+    <string name="disclaimer_text">এই এপে সাধাৰণ ফিটনেছ আৰু স্বাস্থ্যক সমৰ্থন কৰে। এইটো পেচাদাৰী চিকিৎসা বা পুষ্টি পৰামৰ্শৰ বিকল্প নহয়। বহুতো ভাৰতীয় পদাৰ্থৰ কেল\'ৰি মান প্ৰায় অনুমান।</string>
+
+    <!-- States -->
+    <string name="state_loading">লোড হৈছে…</string>
+    <string name="state_empty_food">এখনো কোনো খাবাৰ লগ কৰা হোৱা নাই। প্ৰথম খাবাৰ যোগ কৰক!</string>
+    <string name="state_error">কিছুমান ভুল হৈছে</string>
+
+    <!-- Dashboard extras -->
+    <string name="dash_subtitle">আজিৰ পৰিকল্পনা সাজু হৈছে 💪</string>
+    <string name="dash_macros_today">আজিৰ ম্যাক্ৰ\'ছ</string>
+    <string name="macro_protein">প্ৰ\'টিন</string>
+    <string name="macro_carbs">কাৰ্বস</string>
+    <string name="macro_fat">চর্বি</string>
+    <string name="dash_kcal_left">কেকেএল বাকি</string>
+    <string name="label_target">লক্ষ্য</string>
+    <string name="dash_for_you">আপোনাৰ বাবে</string>
+    <string name="dash_veg_day">🟢 আজিৰ ভেজিটেৰিয়ান দিন — ভেজিটেৰিয়ান পৰামৰ্শ দেখুৱাইছে</string>
+    <string name="unit_per_week">/ সপ্তাহ</string>
+
+    <!-- Add meal extras -->
+    <string name="food_meal">খাবাৰ</string>
+    <string name="food_cooking_optional">ৰন্ধন শৈলী (ঐচ্ছিক)</string>
+    <string name="food_override_calories">কেল\'ৰি অতিক্ৰম কৰক (ঐচ্ছিক)</string>
+    <string name="food_dish_name">পদাৰ্থৰ নাম</string>
+</resources>

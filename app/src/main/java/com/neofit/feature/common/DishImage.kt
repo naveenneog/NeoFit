@@ -60,7 +60,10 @@ fun DishImage(
         }
         if (!imageRef.isNullOrBlank()) {
             AsyncImage(
-                model = if (imageRef.startsWith("http")) imageRef else File(imageRef),
+                model = when {
+                    imageRef.startsWith("http") || imageRef.startsWith("file:///android_asset") -> imageRef
+                    else -> File(imageRef)
+                },
                 contentDescription = label,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.fillMaxSize(),
@@ -68,6 +71,9 @@ fun DishImage(
         }
     }
 }
+
+/** Asset URI for a bundled gpt-image-2 generated dish photo (falls back to placeholder if absent). */
+fun foodAssetUri(foodId: String): String = "file:///android_asset/food/$foodId.jpg"
 
 private fun initials(label: String): String =
     label.trim().split(" ").filter { it.isNotEmpty() }.take(2)

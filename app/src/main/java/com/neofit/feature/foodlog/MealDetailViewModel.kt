@@ -34,7 +34,8 @@ class MealDetailViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             val meal = mealLogRepository.getById(mealId)
-            _state.value = _state.value.copy(meal = meal, imageRef = meal?.imageRef)
+            val fallback = meal?.imageRef ?: meal?.foodId?.let { "file:///android_asset/food/$it.jpg" }
+            _state.value = _state.value.copy(meal = meal, imageRef = fallback)
         }
     }
 

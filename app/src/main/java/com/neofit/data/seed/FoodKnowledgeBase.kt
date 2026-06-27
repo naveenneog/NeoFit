@@ -288,6 +288,18 @@ object FoodKnowledgeBase {
             confidence = HIGH, tags = listOf("fruit"), aliases = listOf("kela")),
         item("green_tea", "Green Tea", PAN_INDIA, VEGAN, SNACK, PortionSize("1 cup", 1f, 120), 2, 0f, 0f, 0f, 0f, RAW,
             confidence = HIGH, tags = listOf("beverage")),
+
+        // ---------------- MILLETS & DECCAN STAPLES ----------------
+        item("ragi_mudde", "Ragi Mudde", SOUTH, VEGAN, LUNCH, piece, 130, 3f, 27f, 1f, 4f, BOILED,
+            confidence = HIGH, ingredients = listOf("finger millet", "ragi flour"),
+            tags = listOf("homemade", "millet"),
+            aliases = listOf("ragi ball", "ragi sankati", "ragi kali", "mudde"),
+            names = mapOf("kn" to "ರಾಗಿ ಮುದ್ದೆ", "te" to "రాగి సంకటి", "ta" to "கேழ்வரகு உருண்டை")),
+        item("jowar_roti", "Jowar Roti", WEST, VEGAN, LUNCH, piece, 120, 3f, 25f, 1f, 3f, ROASTED,
+            confidence = HIGH, ingredients = listOf("sorghum flour"),
+            tags = listOf("homemade", "millet"),
+            aliases = listOf("jowar bhakri", "jolada rotti", "bhakri", "sorghum roti"),
+            names = mapOf("kn" to "ಜೋಳದ ರೊಟ್ಟಿ", "mr" to "ज्वारीची भाकरी", "hi" to "ज्वार रोटी")),
     )
 
     val byId: Map<String, FoodItem> = foods.associateBy { it.id }

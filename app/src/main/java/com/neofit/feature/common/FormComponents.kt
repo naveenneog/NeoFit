@@ -73,6 +73,33 @@ fun <T> SingleChoiceChips(
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+fun <T> MultiChoiceChips(
+    options: List<T>,
+    selected: Set<T>,
+    label: (T) -> String,
+    onToggle: (T) -> Unit,
+    modifier: Modifier = Modifier,
+    title: String? = null,
+) {
+    Column(modifier) {
+        if (title != null) {
+            Text(title, style = androidx.compose.material3.MaterialTheme.typography.labelLarge, modifier = Modifier.padding(bottom = 6.dp))
+        }
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            options.forEach { option ->
+                FilterChip(
+                    selected = option in selected,
+                    onClick = { onToggle(option) },
+                    label = { Text(label(option)) },
+                    colors = FilterChipDefaults.filterChipColors(),
+                )
+            }
+        }
+    }
+}
+
 @Composable
 fun PrimaryButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier, enabled: Boolean = true) {
     Button(

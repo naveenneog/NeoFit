@@ -13,6 +13,7 @@ data class ExerciseItem(
     val met: Float = 4.0f,
     val imagePrompt: String,
     val imageRef: String? = null,
+    val videoUrl: String? = null,
     val voiceCue: String = "",
 ) {
     fun displayName(language: AppLanguage): String =

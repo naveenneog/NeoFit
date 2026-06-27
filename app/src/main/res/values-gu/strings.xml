@@ -1,0 +1,120 @@
+<resources>
+    <string name="app_name">Neo Fit</string>
+    <string name="app_tagline">સ્વાસ્થ્ય, સરળ બનાવ્યું</string>
+
+    <!-- Generic actions -->
+    <string name="action_continue">આગળ વધો</string>
+    <string name="action_next">આગળ</string>
+    <string name="action_back">પાછા</string>
+    <string name="action_save">સાચવો</string>
+    <string name="action_cancel">રદ કરો</string>
+    <string name="action_add">જોડો</string>
+    <string name="action_done">પૂર્ણ</string>
+    <string name="action_skip">છોડી દો</string>
+    <string name="action_retry">ફરીથી પ્રયાસ કરો</string>
+    <string name="action_edit">સંપાદિત કરો</string>
+
+    <!-- Bottom nav -->
+    <string name="nav_home">ઘર</string>
+    <string name="nav_food">ખોરાક</string>
+    <string name="nav_exercise">વ્યાયામ</string>
+    <string name="nav_progress">પ્રગતિ</string>
+    <string name="nav_profile">પ્રોફાઇલ</string>
+
+    <!-- Onboarding -->
+    <string name="onb_welcome_title">Neo Fit માં આપનું સ્વાગત છે</string>
+    <string name="onb_welcome_sub">આપનું સ્વાસ્થ્ય, આપના ખોરાકના હિસાબે. ચાલો આપને સેટ કરીએ.</string>
+    <string name="onb_choose_language">તમારી ભાષા પસંદ કરો</string>
+    <string name="onb_name">તમારું નામ</string>
+    <string name="onb_age">ઉમ્ર</string>
+    <string name="onb_sex">લિંગ</string>
+    <string name="onb_height">ઊંચાઈ (સે.મી.)</string>
+    <string name="onb_weight">વર્તમાન વજન (કિ.ગ્રા.)</string>
+    <string name="onb_target_weight">લક્ષ્ય વજન (કિ.ગ્રા.)</string>
+    <string name="onb_activity">ક્રિયાપ્રવૃત્તિનું સ્તર</string>
+    <string name="onb_diet">આહારની પસંદગી</string>
+    <string name="onb_goal">સ્વાસ્થ્ય લક્ષ્ય</string>
+    <string name="onb_region">પસંદગીનું ખોરાક ક્ષેત્ર</string>
+    <string name="onb_finish">મારી યાત્રા શરૂ કરો</string>
+
+    <!-- Dashboard -->
+    <string name="dash_greeting">નમસ્તે</string>
+    <string name="dash_calories_consumed">ખાધેલ</string>
+    <string name="dash_calories_burned">જળવાયું</string>
+    <string name="dash_calories_remaining">બાકી</string>
+    <string name="dash_steps">કદમ</string>
+    <string name="dash_streak">દિવસની શ્રેણી</string>
+    <string name="dash_weight">વજન</string>
+    <string name="dash_recommended">તમારા માટે ભલામણ કરેલ</string>
+    <string name="dash_quick_add">ઝડપી ભોજન ઉમેરો</string>
+    <string name="dash_quick_workout">ઝડપી વ્યાયામ</string>
+    <string name="dash_hydration">હાઇડ્રેશન</string>
+    <string name="dash_wellness">સ્વાસ્થ્ય સ્કોર</string>
+    <string name="dash_water_glass">+1 ગ્લાસ</string>
+
+    <!-- Food -->
+    <string name="food_log_title">ખોરાક લોગ</string>
+    <string name="food_add_title">ભોજન ઉમેરો</string>
+    <string name="food_search_hint">ડિશ શોધો… (ઇડલી, રાજમા ચાવલ, ચા)</string>
+    <string name="food_breakfast">નાસ્તો</string>
+    <string name="food_lunch">મધ્યાહ્ન ભોજન</string>
+    <string name="food_dinner">રાત્રિભોજન</string>
+    <string name="food_snack">નાસ્તો</string>
+    <string name="food_portion">ભાગ</string>
+    <string name="food_photo_log">ફોટો પરથી લોગ</string>
+    <string name="food_repeat_last">છેલ્લું ભોજન પુનરાવર્તિત કરો</string>
+    <string name="food_recent">તાજેતરનું</string>
+    <string name="food_favourites">પ્રિય</string>
+    <string name="food_confidence_high">ઉચ્ચ વિશ્વાસ</string>
+    <string name="food_confidence_medium">મધ્યમ વિશ્વાસ</string>
+    <string name="food_confidence_rough">કઠણ અંદાજ</string>
+    <string name="food_est_prefix">~</string>
+    <string name="food_est_note">માનક સર્વિંગના આધારે અંદાજિત</string>
+    <string name="food_manual_correct">હસ્તચાલિત સુધારેલ</string>
+
+    <!-- Exercise -->
+    <string name="ex_plans_title">વ્યાયામ યોજના</string>
+    <string name="ex_start">વ્યાયામ શરૂ કરો</string>
+    <string name="ex_rest">વિરામ</string>
+    <string name="ex_complete">પૂર્ણ તરીકે ચિહ્નિત કરો</string>
+    <string name="ex_voice">આવાજ માર્ગદર્શન</string>
+
+    <!-- Progress -->
+    <string name="prog_title">પ્રગતિ</string>
+    <string name="prog_weight_history">વજનનો ઇતિહાસ</string>
+    <string name="prog_bmi">BMI</string>
+    <string name="prog_log_weight">વજન લોગ કરો</string>
+
+    <!-- Insights -->
+    <string name="insights_title">અંતર્દૃષ્ટિઓ</string>
+
+    <!-- Profile / Settings -->
+    <string name="profile_title">પ્રોફાઇલ &amp; સેટિંગ્સ</string>
+    <string name="profile_region_prefs">ક્ષેત્ર &amp; પસંદગીઓ</string>
+    <string name="profile_language">ભાષા</string>
+    <string name="profile_disclaimer_title">અસ્વીકૃતિ</string>
+    <string name="disclaimer_text">આ એપ્લિકેશન સામાન્ય ફિટનેસ અને સ્વાસ્થ્યને સમર્થન આપે છે. તે વ્યાવસાયિક તબીબી અથવા પોષણ સલાહને બદલે નથી. ઘણા ભારતીય વાનગીઓ માટે કૅલોરી મૂલ્યો અંદાજિત છે.</string>
+
+    <!-- States -->
+    <string name="state_loading">લોડ થઈ રહ્યું છે…</string>
+    <string name="state_empty_food">હજી સુધી કોઈ ભોજન નોંધાયું નથી. પ્રથમ ભોજન ઉમેરો!</string>
+    <string name="state_error">કોઈક ભૂલ થઈ ગઈ છે</string>
+
+    <!-- Dashboard extras -->
+    <string name="dash_subtitle">આજનો યોજના તૈયાર છે 💪</string>
+    <string name="dash_macros_today">આજના મેક્રોઝ</string>
+    <string name="macro_protein">પ્રોટીન</string>
+    <string name="macro_carbs">કાર્બ્સ</string>
+    <string name="macro_fat">ચરબી</string>
+    <string name="dash_kcal_left">કૅલોરી બાકી</string>
+    <string name="label_target">લક્ષ્ય</string>
+    <string name="dash_for_you">તમારા માટે</string>
+    <string name="dash_veg_day">🟢 આજે શાકાહારી દિવસ — શાકાહારી સૂચનો બતાવી રહ્યા છે</string>
+    <string name="unit_per_week">/ સપ્તાહ</string>
+
+    <!-- Add meal extras -->
+    <string name="food_meal">ભોજન</string>
+    <string name="food_cooking_optional">ખોરાક બનાવવાની શૈલી (વૈકલ્પિક)</string>
+    <string name="food_override_calories">કૅલોરીને ઓવરરાઇડ કરો (વૈકલ્પિક)</string>
+    <string name="food_dish_name">ડિશનું નામ</string>
+</resources>

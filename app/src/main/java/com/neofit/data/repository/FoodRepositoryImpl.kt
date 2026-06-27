@@ -61,6 +61,7 @@ class FoodRepositoryImpl @Inject constructor(
         DietaryPreference.VEGETARIAN -> food == FoodDiet.VEG || food == FoodDiet.VEGAN
         DietaryPreference.EGGETARIAN -> food != FoodDiet.NONVEG
         DietaryPreference.NON_VEGETARIAN -> true
+        DietaryPreference.FLEXITARIAN -> true
     }
 
     private fun relevance(food: FoodItem, query: String): Int {

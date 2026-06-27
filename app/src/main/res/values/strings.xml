@@ -99,4 +99,22 @@
     <string name="state_loading">Loading…</string>
     <string name="state_empty_food">No meals logged yet. Pehla meal add karein!</string>
     <string name="state_error">Something went wrong</string>
+
+    <!-- Dashboard extras -->
+    <string name="dash_subtitle">Aaj ka plan ready hai 💪</string>
+    <string name="dash_macros_today">Macros today</string>
+    <string name="macro_protein">Protein</string>
+    <string name="macro_carbs">Carbs</string>
+    <string name="macro_fat">Fat</string>
+    <string name="dash_kcal_left">kcal left</string>
+    <string name="label_target">Target</string>
+    <string name="dash_for_you">For you</string>
+    <string name="dash_veg_day">🟢 Aaj veg day — showing veg suggestions</string>
+    <string name="unit_per_week">/ wk</string>
+
+    <!-- Add meal extras -->
+    <string name="food_meal">Meal</string>
+    <string name="food_cooking_optional">Cooking style (optional)</string>
+    <string name="food_override_calories">Override calories (optional)</string>
+    <string name="food_dish_name">Dish name</string>
 </resources>

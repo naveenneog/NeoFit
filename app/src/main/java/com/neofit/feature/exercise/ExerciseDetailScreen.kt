@@ -148,7 +148,12 @@ private fun RunnerView(
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
         )
-        DishImage(state.stepImageRef, item.name, modifier = Modifier.fillMaxWidth().height(200.dp))
+        ExerciseMedia(
+            videoUrl = item.videoUrl,
+            imageRef = state.stepImageRef,
+            label = item.name,
+            modifier = Modifier.fillMaxWidth().height(200.dp),
+        )
 
         if (state.phase == Phase.REST || item.durationSec != null) {
             Text("${state.secondsLeft}s", style = MaterialTheme.typography.displaySmall, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)

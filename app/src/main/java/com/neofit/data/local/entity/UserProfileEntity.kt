@@ -18,6 +18,7 @@ data class UserProfileEntity(
     val preferredRegion: String,
     val language: String,
     val foodRestrictions: List<String>,
+    val vegDays: List<String>,
     val dailyCalorieTarget: Int,
     val dailyProteinTargetG: Int,
     val dailyStepTarget: Int,

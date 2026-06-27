@@ -32,6 +32,7 @@ import com.neofit.domain.model.FoodRegion
 import com.neofit.domain.model.Sex
 import com.neofit.domain.model.WellnessGoal
 import com.neofit.feature.common.LabeledTextField
+import com.neofit.feature.common.MultiChoiceChips
 import com.neofit.feature.common.NumberField
 import com.neofit.feature.common.NeoCard
 import com.neofit.feature.common.PrimaryButton
@@ -156,6 +157,29 @@ private fun StepDiet(state: OnboardingDraft, vm: OnboardingViewModel) {
     Column {
         StepHeader(stringResource(R.string.onb_diet))
         SingleChoiceChips(DietaryPreference.entries, state.diet, { it.label }, { d -> vm.update { it.copy(diet = d) } })
+
+        if (state.diet != DietaryPreference.VEGETARIAN && state.diet != DietaryPreference.VEGAN) {
+            Spacer(Modifier.height(NeoCardSpacingDp))
+            MultiChoiceChips(
+                title = "Veg-only days (optional)",
+                options = (1..7).toList(),
+                selected = state.vegDays,
+                label = { weekdayLabel(it) },
+                onToggle = { day ->
+                    vm.update {
+                        val s = if (day in it.vegDays) it.vegDays - day else it.vegDays + day
+                        it.copy(vegDays = s)
+                    }
+                },
+            )
+            Text(
+                "On these days Neo Fit suggests vegetarian meals (e.g. many people keep Tuesday or Thursday veg).",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(top = 6.dp),
+            )
+        }
+
         Spacer(Modifier.height(NeoCardSpacingDp))
         LabeledTextField(
             state.restrictions,
@@ -164,6 +188,10 @@ private fun StepDiet(state: OnboardingDraft, vm: OnboardingViewModel) {
             keyboardType = KeyboardType.Text,
         )
     }
+}
+
+private fun weekdayLabel(day: Int): String = when (day) {
+    1 -> "Mon"; 2 -> "Tue"; 3 -> "Wed"; 4 -> "Thu"; 5 -> "Fri"; 6 -> "Sat"; else -> "Sun"
 }
 
 @Composable

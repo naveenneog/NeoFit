@@ -1,0 +1,120 @@
+<resources>
+    <string name="app_name">Neo Fit</string>
+    <string name="app_tagline">صحت، سادو بڻايو</string>
+
+    <!-- Generic actions -->
+    <string name="action_continue">جاري رکو</string>
+    <string name="action_next">اڳيون</string>
+    <string name="action_back">پوئتي</string>
+    <string name="action_save">ذخيره ڪريو</string>
+    <string name="action_cancel">منسوخ ڪريو</string>
+    <string name="action_add">شامل ڪريو</string>
+    <string name="action_done">مڪمل</string>
+    <string name="action_skip">سکپ ڪريو</string>
+    <string name="action_retry">دوبارہ ڪوشش ڪريو</string>
+    <string name="action_edit">ترميم ڪريو</string>
+
+    <!-- Bottom nav -->
+    <string name="nav_home">گهر</string>
+    <string name="nav_food">کاڌو</string>
+    <string name="nav_exercise">ورزش</string>
+    <string name="nav_progress">ترقي</string>
+    <string name="nav_profile">پروفائل</string>
+
+    <!-- Onboarding -->
+    <string name="onb_welcome_title">Neo Fit ۾ خوش آمديد</string>
+    <string name="onb_welcome_sub">توهان جي صحت، توهان جي کاڌي جي حساب سان. اچو ته توهان کي ترتيب ڏيون.</string>
+    <string name="onb_choose_language">پنهنجي ٻولي چونڊيو</string>
+    <string name="onb_name">توهان جو نالو</string>
+    <string name="onb_age">عمر</string>
+    <string name="onb_sex">جنس</string>
+    <string name="onb_height">اُچائي (سینٽي ميٽر)</string>
+    <string name="onb_weight">موجوده وزن (ڪلوگرام)</string>
+    <string name="onb_target_weight">هدف وزن (ڪلوگرام)</string>
+    <string name="onb_activity">سرگرمي جي سطح</string>
+    <string name="onb_diet">غذا جي ترجيح</string>
+    <string name="onb_goal">صحت جو مقصد</string>
+    <string name="onb_region">ترجيحي کاڌي جو علائقو</string>
+    <string name="onb_finish">منهنجي سفر شروع ڪريو</string>
+
+    <!-- Dashboard -->
+    <string name="dash_greeting">نمستے</string>
+    <string name="dash_calories_consumed">کائو</string>
+    <string name="dash_calories_burned">سوزي وئي</string>
+    <string name="dash_calories_remaining">باقي</string>
+    <string name="dash_steps">قدمن</string>
+    <string name="dash_streak">ڏينهن جو سلسلو</string>
+    <string name="dash_weight">وزن</string>
+    <string name="dash_recommended">توهان لاءِ سفارش ڪيل</string>
+    <string name="dash_quick_add">جلدي کاڌو شامل ڪريو</string>
+    <string name="dash_quick_workout">جلدي ورزش</string>
+    <string name="dash_hydration">پاني جي مقدار</string>
+    <string name="dash_wellness">صحت جو اسڪوئر</string>
+    <string name="dash_water_glass">+1 گلاس</string>
+
+    <!-- Food -->
+    <string name="food_log_title">کاڌي جو رڪارڊ</string>
+    <string name="food_add_title">کاڌو شامل ڪريو</string>
+    <string name="food_search_hint">کاڌن جي ڳولا ڪريو… (ايدلي، راجما چاول، چاءِ)</string>
+    <string name="food_breakfast">ناشتو</string>
+    <string name="food_lunch">دوپہر جو کاڌو</string>
+    <string name="food_dinner">رات جو کاڌو</string>
+    <string name="food_snack">اسنڪ</string>
+    <string name="food_portion">حصو</string>
+    <string name="food_photo_log">تصوير مان رڪارڊ</string>
+    <string name="food_repeat_last">آخري کاڌو ورجايو</string>
+    <string name="food_recent">تازو</string>
+    <string name="food_favourites">پسنديده</string>
+    <string name="food_confidence_high">اعليٰ اعتماد</string>
+    <string name="food_confidence_medium">درمياني اعتماد</string>
+    <string name="food_confidence_rough">تخميني اندازو</string>
+    <string name="food_est_prefix">~</string>
+    <string name="food_est_note">معياري حصي جي بنياد تي تخميني</string>
+    <string name="food_manual_correct">دستي طور تي درست ڪيو</string>
+
+    <!-- Exercise -->
+    <string name="ex_plans_title">ورزش جا منصوبا</string>
+    <string name="ex_start">ورزش شروع ڪريو</string>
+    <string name="ex_rest">آرام</string>
+    <string name="ex_complete">مڪمل طور تي نشان لڳايو</string>
+    <string name="ex_voice">آواز جي رهنمائي</string>
+
+    <!-- Progress -->
+    <string name="prog_title">ترقي</string>
+    <string name="prog_weight_history">وزن جي تاريخ</string>
+    <string name="prog_bmi">BMI</string>
+    <string name="prog_log_weight">وزن رڪارڊ ڪريو</string>
+
+    <!-- Insights -->
+    <string name="insights_title">اندروني معلومات</string>
+
+    <!-- Profile / Settings -->
+    <string name="profile_title">پروفائل &amp; سيٽنگون</string>
+    <string name="profile_region_prefs">علائقو &amp; ترجيحات</string>
+    <string name="profile_language">ٻولي</string>
+    <string name="profile_disclaimer_title">انکار</string>
+    <string name="disclaimer_text">هي ايپ عام فٽنيس ۽ صحت جي مدد ڪري ٿي. هي پروفيشنل طبي يا غذائي صلاح جو متبادل نه آهي. ڪيترن ئي ڀارتي کاڌن لاءِ ڪيلورين جي قيمتون تخميني آهن.</string>
+
+    <!-- States -->
+    <string name="state_loading">لوڊ ٿي رهيو آهي…</string>
+    <string name="state_empty_food">هن وقت تائين ڪو به کاڌو رڪارڊ نه ٿيو آهي. پهريون کاڌو شامل ڪريو!</string>
+    <string name="state_error">ڪجهه غلط ٿي ويو</string>
+
+    <!-- Dashboard extras -->
+    <string name="dash_subtitle">اڄ جو منصوبو تيار آهي 💪</string>
+    <string name="dash_macros_today">اڄ جا ميڪروز</string>
+    <string name="macro_protein">پروٽين</string>
+    <string name="macro_carbs">ڪاربوهائيڊريٽ</string>
+    <string name="macro_fat">چربي</string>
+    <string name="dash_kcal_left">kcal باقي</string>
+    <string name="label_target">هدف</string>
+    <string name="dash_for_you">توهان لاءِ</string>
+    <string name="dash_veg_day">🟢 اڄ سبزي وارو ڏينهن — سبزي جي تجويزن کي ڏيکارڻ</string>
+    <string name="unit_per_week">/ هفتي</string>
+
+    <!-- Add meal extras -->
+    <string name="food_meal">کاڌو</string>
+    <string name="food_cooking_optional">پچائڻ جو انداز (اختياري)</string>
+    <string name="food_override_calories">ڪيلورين کي مٽايو (اختياري)</string>
+    <string name="food_dish_name">کاڌي جو نالو</string>
+</resources>

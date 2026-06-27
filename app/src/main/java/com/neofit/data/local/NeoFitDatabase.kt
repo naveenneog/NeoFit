@@ -32,7 +32,7 @@ import com.neofit.data.local.entity.WorkoutSessionEntity
         WaterEntity::class,
         FavouriteFoodEntity::class,
     ],
-    version = 1,
+    version = 2,
     exportSchema = false,
 )
 @TypeConverters(Converters::class)

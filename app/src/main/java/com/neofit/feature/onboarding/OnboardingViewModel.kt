@@ -1,9 +1,8 @@
 package com.neofit.feature.onboarding
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.neofit.core.i18n.LocaleManager
+import com.neofit.core.i18n.LocaleController
 import com.neofit.domain.model.ActivityLevel
 import com.neofit.domain.model.AppLanguage
 import com.neofit.domain.model.DietaryPreference
@@ -13,7 +12,6 @@ import com.neofit.domain.model.UserProfile
 import com.neofit.domain.model.WellnessGoal
 import com.neofit.domain.usecase.CompleteOnboardingUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -32,6 +30,7 @@ data class OnboardingDraft(
     val activityLevel: ActivityLevel = ActivityLevel.MODERATE,
     val diet: DietaryPreference = DietaryPreference.VEGETARIAN,
     val restrictions: String = "",
+    val vegDays: Set<Int> = emptySet(),
     val goal: WellnessGoal = WellnessGoal.GENERAL_WELLNESS,
     val region: FoodRegion = FoodRegion.MIXED,
     val saving: Boolean = false,
@@ -51,7 +50,6 @@ data class OnboardingDraft(
 @HiltViewModel
 class OnboardingViewModel @Inject constructor(
     private val completeOnboarding: CompleteOnboardingUseCase,
-    @ApplicationContext private val context: Context,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(OnboardingDraft())
@@ -89,9 +87,10 @@ class OnboardingViewModel @Inject constructor(
                 preferredRegion = s.region,
                 language = s.language,
                 foodRestrictions = s.restrictions.split(",").map { it.trim() }.filter { it.isNotEmpty() },
+                vegDays = s.vegDays,
             )
             completeOnboarding(draft)
-            LocaleManager.persist(context, s.language.localeTag)
+            LocaleController.apply(s.language.localeTag)
             _state.value = _state.value.copy(saving = false, finished = true)
         }
     }

@@ -1,0 +1,120 @@
+<resources>
+    <string name="app_name">Neo Fit</string>
+    <string name="app_tagline">ആരോഗ്യം, ലളിതമായി ഉണ്ടാക്കുക</string>
+
+    <!-- Generic actions -->
+    <string name="action_continue">തുടരുക</string>
+    <string name="action_next">അടുത്തത്</string>
+    <string name="action_back">മടങ്ങുക</string>
+    <string name="action_save">സംരക്ഷിക്കുക</string>
+    <string name="action_cancel">റദ്ദാക്കുക</string>
+    <string name="action_add">ചേർക്കുക</string>
+    <string name="action_done">സാധിച്ചു</string>
+    <string name="action_skip">വിട്ടുക</string>
+    <string name="action_retry">മറുപടി നൽകുക</string>
+    <string name="action_edit">തിരുത്തുക</string>
+
+    <!-- Bottom nav -->
+    <string name="nav_home">മുൻപിൽ</string>
+    <string name="nav_food">ഭക്ഷണം</string>
+    <string name="nav_exercise">വ്യായാമം</string>
+    <string name="nav_progress">മുന്നേറ്റം</string>
+    <string name="nav_profile">പ്രൊഫൈൽ</string>
+
+    <!-- Onboarding -->
+    <string name="onb_welcome_title">Neo Fit-ലേക്ക് സ്വാഗതം</string>
+    <string name="onb_welcome_sub">നിങ്ങളുടെ ആരോഗ്യത്തിന്, നിങ്ങളുടെ ഭക്ഷണത്തിന്റെ അടിസ്ഥാനത്തിൽ. നിങ്ങളെ സജ്ജമാക്കാം.</string>
+    <string name="onb_choose_language">നിങ്ങളുടെ ഭാഷ തിരഞ്ഞെടുക്കുക</string>
+    <string name="onb_name">നിങ്ങളുടെ പേര്</string>
+    <string name="onb_age">പ്രായം</string>
+    <string name="onb_sex">ലിംഗം</string>
+    <string name="onb_height">ഉയരം (സെ.മീ.)</string>
+    <string name="onb_weight">ഇപ്പോഴത്തെ ഭാരം (കി.ഗ്ര.)</string>
+    <string name="onb_target_weight">ലക്ഷ്യ ഭാരം (കി.ഗ്ര.)</string>
+    <string name="onb_activity">പ്രവൃത്തി നില</string>
+    <string name="onb_diet">ഭക്ഷണ പ്രിയം</string>
+    <string name="onb_goal">ആരോഗ്യ ലക്ഷ്യം</string>
+    <string name="onb_region">ആഗ്രഹിക്കുന്ന ഭക്ഷണ പ്രദേശം</string>
+    <string name="onb_finish">എന്റെ യാത്ര ആരംഭിക്കുക</string>
+
+    <!-- Dashboard -->
+    <string name="dash_greeting">നമസ്തേ</string>
+    <string name="dash_calories_consumed">ഭക്ഷിച്ചത്</string>
+    <string name="dash_calories_burned">കത്തിച്ചത്</string>
+    <string name="dash_calories_remaining">ശേഷിക്കുന്നത്</string>
+    <string name="dash_steps">പടികൾ</string>
+    <string name="dash_streak">ദിവസം തുടർച്ച</string>
+    <string name="dash_weight">ഭാരം</string>
+    <string name="dash_recommended">നിങ്ങൾക്കായി ശുപാർശ ചെയ്തത്</string>
+    <string name="dash_quick_add">ത്വരിതമായി ഭക്ഷണം ചേർക്കുക</string>
+    <string name="dash_quick_workout">ത്വരിതമായി വ്യായാമം</string>
+    <string name="dash_hydration">ജലവിതരണം</string>
+    <string name="dash_wellness">ആരോഗ്യ സ്കോർ</string>
+    <string name="dash_water_glass">+1 ഗ്ലാസ്</string>
+
+    <!-- Food -->
+    <string name="food_log_title">ഭക്ഷണ രേഖ</string>
+    <string name="food_add_title">ഭക്ഷണം ചേർക്കുക</string>
+    <string name="food_search_hint">പാചകങ്ങൾ തിരയുക… (ഇഡ്ലി, രാജ്മ ചവാൽ, ചായ)</string>
+    <string name="food_breakfast">പ്രഭാതഭക്ഷണം</string>
+    <string name="food_lunch">മധ്യാഹ്നഭക്ഷണം</string>
+    <string name="food_dinner">രാത്രിഭക്ഷണം</string>
+    <string name="food_snack">സ്നാക്ക്</string>
+    <string name="food_portion">അളവ്</string>
+    <string name="food_photo_log">ഫോട്ടോയിലൂടെ രേഖപ്പെടുത്തുക</string>
+    <string name="food_repeat_last">അവസാന ഭക്ഷണം ആവർത്തിക്കുക</string>
+    <string name="food_recent">സമീപകാലം</string>
+    <string name="food_favourites">പ്രിയപ്പെട്ടവ</string>
+    <string name="food_confidence_high">ഉയർന്ന ആത്മവിശ്വാസം</string>
+    <string name="food_confidence_medium">മധ്യ ആത്മവിശ്വാസം</string>
+    <string name="food_confidence_rough">ആസൂത്രിതമായ കണക്കുകൂട്ടൽ</string>
+    <string name="food_est_prefix">~</string>
+    <string name="food_est_note">സാധാരണ സേവനത്തിന്റെ അടിസ്ഥാനത്തിൽ കണക്കാക്കിയത്</string>
+    <string name="food_manual_correct">കൈയോടെ ശരിയാക്കിയത്</string>
+
+    <!-- Exercise -->
+    <string name="ex_plans_title">വ്യായാമ പദ്ധതികൾ</string>
+    <string name="ex_start">വ്യായാമം ആരംഭിക്കുക</string>
+    <string name="ex_rest">വിശ്രമിക്കുക</string>
+    <string name="ex_complete">പൂർണ്ണമായി അടയാളപ്പെടുത്തുക</string>
+    <string name="ex_voice">ശബ്ദ മാർഗനിർദ്ദേശം</string>
+
+    <!-- Progress -->
+    <string name="prog_title">മുന്നേറ്റം</string>
+    <string name="prog_weight_history">ഭാരത്തിന്റെ ചരിത്രം</string>
+    <string name="prog_bmi">BMI</string>
+    <string name="prog_log_weight">ഭാരം രേഖപ്പെടുത്തുക</string>
+
+    <!-- Insights -->
+    <string name="insights_title">അവലോകനങ്ങൾ</string>
+
+    <!-- Profile / Settings -->
+    <string name="profile_title">പ്രൊഫൈൽ &amp; ക്രമീകരണങ്ങൾ</string>
+    <string name="profile_region_prefs">പ്രദേശം &amp; ഇഷ്ടങ്ങൾ</string>
+    <string name="profile_language">ഭാഷ</string>
+    <string name="profile_disclaimer_title">അവകാശവാദം</string>
+    <string name="disclaimer_text">ഈ ആപ്പ് പൊതുവായ ഫിറ്റ്നസ്, ആരോഗ്യത്തിനുള്ള പിന്തുണ നൽകുന്നു. ഇത് പ്രൊഫഷണൽ മെഡിക്കൽ അല്ലെങ്കിൽ പോഷക ഉപദേശത്തിന്റെ പകരം വരില്ല. നിരവധി ഇന്ത്യൻ വിഭവങ്ങളുടെ കലോറി മൂല്യങ്ങൾ ഏകദേശം കണക്കാക്കപ്പെട്ടവയാണ്.</string>
+
+    <!-- States -->
+    <string name="state_loading">ലോഡിംഗ്…</string>
+    <string name="state_empty_food">ഇന്നുവരെ ഭക്ഷണം രേഖപ്പെടുത്തിയിട്ടില്ല. ആദ്യ ഭക്ഷണം ചേർക്കുക!</string>
+    <string name="state_error">എന്തോ തെറ്റായി പോയി</string>
+
+    <!-- Dashboard extras -->
+    <string name="dash_subtitle">ഇന്നത്തെ പദ്ധതി തയ്യാറാണ് 💪</string>
+    <string name="dash_macros_today">ഇന്നത്തെ മാക്രോസ്</string>
+    <string name="macro_protein">പ്രോട്ടീൻ</string>
+    <string name="macro_carbs">കാർബ്സ്</string>
+    <string name="macro_fat">മരച്ചീൻ</string>
+    <string name="dash_kcal_left">kcal ശേഷിക്കുന്നു</string>
+    <string name="label_target">ലക്ഷ്യം</string>
+    <string name="dash_for_you">നിങ്ങളുടെ വേണ്ടി</string>
+    <string name="dash_veg_day">🟢 ഇന്ന് വെജിറ്റേറിയൻ ദിനം — വെജിറ്റേറിയൻ നിർദ്ദേശങ്ങൾ കാണിക്കുന്നു</string>
+    <string name="unit_per_week">/ ആഴ്ച</string>
+
+    <!-- Add meal extras -->
+    <string name="food_meal">ഭക്ഷണം</string>
+    <string name="food_cooking_optional">പാചക ശൈലി (ഐച്ഛികം)</string>
+    <string name="food_override_calories">കലോറി മറികടക്കുക (ഐച്ഛികം)</string>
+    <string name="food_dish_name">വിഭവത്തിന്റെ പേര്</string>
+</resources>

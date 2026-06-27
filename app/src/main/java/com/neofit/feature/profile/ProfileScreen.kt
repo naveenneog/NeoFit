@@ -1,6 +1,5 @@
 package com.neofit.feature.profile
 
-import android.app.Activity
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,14 +22,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.neofit.R
-import com.neofit.core.i18n.LocaleManager
+import com.neofit.core.i18n.LocaleController
 import com.neofit.core.util.Format
 import com.neofit.domain.model.AppLanguage
 import com.neofit.domain.model.Goal
@@ -48,7 +46,6 @@ fun ProfileScreen(
     viewModel: ProfileViewModel = hiltViewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
-    val context = LocalContext.current
 
     Scaffold(
         topBar = { TopAppBar(title = { Text(stringResource(R.string.profile_title)) }) },
@@ -75,8 +72,8 @@ fun ProfileScreen(
                         label = { it.nativeLabel },
                         onSelect = { lang ->
                             viewModel.setLanguage(lang)
-                            LocaleManager.persist(context, lang.localeTag)
-                            (context as? Activity)?.recreate()
+                            // AppCompat applies + persists the locale and recreates activities.
+                            LocaleController.apply(lang.localeTag)
                         },
                     )
                 }

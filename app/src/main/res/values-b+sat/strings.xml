@@ -1,0 +1,120 @@
+<resources>
+    <string name="app_name">Neo Fit</string>
+    <string name="app_tagline">Sehat, simple banayi</string>
+
+    <!-- Generic actions -->
+    <string name="action_continue">Jari rakhun</string>
+    <string name="action_next">Agla</string>
+    <string name="action_back">Pichhe</string>
+    <string name="action_save">Bachao</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_add">Jorun</string>
+    <string name="action_done">Khatam</string>
+    <string name="action_skip">Chhodo</string>
+    <string name="action_retry">Dobara koshish karo</string>
+    <string name="action_edit">Sampadit karo</string>
+
+    <!-- Bottom nav -->
+    <string name="nav_home">Ghar</string>
+    <string name="nav_food">Bhojan</string>
+    <string name="nav_exercise">Vyayam</string>
+    <string name="nav_progress">Pragati</string>
+    <string name="nav_profile">Profile</string>
+
+    <!-- Onboarding -->
+    <string name="onb_welcome_title">Neo Fit me aapka swagat hai</string>
+    <string name="onb_welcome_sub">Aapki sehat, aapke khaane ke hisaab se. Aaiye aapko set karte hain.</string>
+    <string name="onb_choose_language">Apni bhasha chuniye</string>
+    <string name="onb_name">Aapka naam</string>
+    <string name="onb_age">Umra</string>
+    <string name="onb_sex">Ling</string>
+    <string name="onb_height">Lambai (cm)</string>
+    <string name="onb_weight">Vartaman wajan (kg)</string>
+    <string name="onb_target_weight">Lakshya wajan (kg)</string>
+    <string name="onb_activity">Gatividhi star</string>
+    <string name="onb_diet">Aaharik pasand</string>
+    <string name="onb_goal">Swasthya lakshya</string>
+    <string name="onb_region">Pasandida bhojan kshetra</string>
+    <string name="onb_finish">Meri yatra shuru karo</string>
+
+    <!-- Dashboard -->
+    <string name="dash_greeting">Namaste</string>
+    <string name="dash_calories_consumed">Khaaya</string>
+    <string name="dash_calories_burned">Jalaaya</string>
+    <string name="dash_calories_remaining">Bachi hui</string>
+    <string name="dash_steps">Kadman</string>
+    <string name="dash_streak">Din ki silsila</string>
+    <string name="dash_weight">Wajan</string>
+    <string name="dash_recommended">Aapke liye sujhav</string>
+    <string name="dash_quick_add">Jaldi bhojan jorun</string>
+    <string name="dash_quick_workout">Jaldi vyayam</string>
+    <string name="dash_hydration">Hydration</string>
+    <string name="dash_wellness">Swasthya score</string>
+    <string name="dash_water_glass">+1 glass</string>
+
+    <!-- Food -->
+    <string name="food_log_title">Bhojan log</string>
+    <string name="food_add_title">Bhojan jorun</string>
+    <string name="food_search_hint">Dish khojein… (idli, rajma chawal, chai)</string>
+    <string name="food_breakfast">Nashta</string>
+    <string name="food_lunch">Dopahar ka khana</string>
+    <string name="food_dinner">Raat ka khana</string>
+    <string name="food_snack">Snacks</string>
+    <string name="food_portion">Hissa</string>
+    <string name="food_photo_log">Photo se log</string>
+    <string name="food_repeat_last">Aakhri bhojan dohraein</string>
+    <string name="food_recent">Haal ke</string>
+    <string name="food_favourites">Pasandida</string>
+    <string name="food_confidence_high">Uchit vishwas</string>
+    <string name="food_confidence_medium">Madhyam vishwas</string>
+    <string name="food_confidence_rough">Krough anuman</string>
+    <string name="food_est_prefix">~</string>
+    <string name="food_est_note">Maanak serving ke aadhar par anumanit</string>
+    <string name="food_manual_correct">Hath se sudharo</string>
+
+    <!-- Exercise -->
+    <string name="ex_plans_title">Vyayam yojana</string>
+    <string name="ex_start">Vyayam shuru karo</string>
+    <string name="ex_rest">Aaram</string>
+    <string name="ex_complete">Pura hua mark karo</string>
+    <string name="ex_voice">Awaz margdarshan</string>
+
+    <!-- Progress -->
+    <string name="prog_title">Pragati</string>
+    <string name="prog_weight_history">Wajan itihas</string>
+    <string name="prog_bmi">BMI</string>
+    <string name="prog_log_weight">Wajan log karo</string>
+
+    <!-- Insights -->
+    <string name="insights_title">Insights</string>
+
+    <!-- Profile / Settings -->
+    <string name="profile_title">Profile &amp; settings</string>
+    <string name="profile_region_prefs">Kshetra &amp; pasand</string>
+    <string name="profile_language">Bhasha</string>
+    <string name="profile_disclaimer_title">Disclaimer</string>
+    <string name="disclaimer_text">Yeh app samanya fitness aur swasthya ko samarthan karta hai. Yeh peshewar chikitsa ya poshan salah ka vikalp nahi hai. Bahut se Bhartiya dishes ke liye calorie mulyan anuman hain.</string>
+
+    <!-- States -->
+    <string name="state_loading">Loading…</string>
+    <string name="state_empty_food">Ab tak koi bhojan log nahi hua. Pehla bhojan jorun!</string>
+    <string name="state_error">Kuch galat hua</string>
+
+    <!-- Dashboard extras -->
+    <string name="dash_subtitle">Aaj ka plan ready hai 💪</string>
+    <string name="dash_macros_today">Aaj ke macros</string>
+    <string name="macro_protein">Protein</string>
+    <string name="macro_carbs">Carbs</string>
+    <string name="macro_fat">Chiknai</string>
+    <string name="dash_kcal_left">kcal bachi hui</string>
+    <string name="label_target">Lakshya</string>
+    <string name="dash_for_you">Aapke liye</string>
+    <string name="dash_veg_day">🟢 Aaj veg din — veg sujhav dikhana</string>
+    <string name="unit_per_week">/ hafte</string>
+
+    <!-- Add meal extras -->
+    <string name="food_meal">Bhojan</string>
+    <string name="food_cooking_optional">Pakane ka tarika (vikalpik)</string>
+    <string name="food_override_calories">Calories ko override karo (vikalpik)</string>
+    <string name="food_dish_name">Dish ka naam</string>
+</resources>

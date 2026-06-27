@@ -17,6 +17,7 @@ enum class DietaryPreference(val label: String) {
     VEGETARIAN("Vegetarian"),
     EGGETARIAN("Eggetarian"),
     NON_VEGETARIAN("Non-vegetarian"),
+    FLEXITARIAN("Veg & non-veg (some days veg)"),
     VEGAN("Vegan"),
 }
 
@@ -103,9 +104,10 @@ enum class RecommendationType { MEAL, EXERCISE, NUDGE, HYDRATION }
 enum class SyncState { IDLE, SYNCING, SUCCESS, ERROR, UNAVAILABLE }
 
 /**
- * Supported display languages. `localeTag` selects Android resources;
- * `romanized` blends (Hinglish/Kanglish/Tanglish) reuse English resources
- * but show native dish names in Latin script.
+ * Supported display languages: the 22 scheduled languages of India plus English
+ * and a few romanized blends (Hinglish/Kanglish/Tanglish). `localeTag` selects
+ * Android resources (BCP-47); romanized blends reuse English resources but show
+ * native dish names in Latin script. `code` keys per-language dish names.
  */
 enum class AppLanguage(
     val code: String,
@@ -116,13 +118,29 @@ enum class AppLanguage(
     ENGLISH("en", "en", "English", false),
     HINGLISH("hi-en", "en", "Hinglish", true),
     HINDI("hi", "hi", "हिन्दी", false),
-    KANNADA("kn", "kn", "ಕನ್ನಡ", false),
-    KANGLISH("kn-en", "en", "Kanglish", true),
-    TAMIL("ta", "ta", "தமிழ்", false),
-    TANGLISH("ta-en", "en", "Tanglish", true),
+    BENGALI("bn", "bn", "বাংলা", false),
     TELUGU("te", "te", "తెలుగు", false),
     MARATHI("mr", "mr", "मराठी", false),
-    BENGALI("bn", "bn", "বাংলা", false);
+    TAMIL("ta", "ta", "தமிழ்", false),
+    TANGLISH("ta-en", "en", "Tanglish", true),
+    URDU("ur", "ur", "اردو", false),
+    GUJARATI("gu", "gu", "ગુજરાતી", false),
+    KANNADA("kn", "kn", "ಕನ್ನಡ", false),
+    KANGLISH("kn-en", "en", "Kanglish", true),
+    ODIA("or", "or", "ଓଡ଼ିଆ", false),
+    MALAYALAM("ml", "ml", "മലയാളം", false),
+    PUNJABI("pa", "pa", "ਪੰਜਾਬੀ", false),
+    ASSAMESE("as", "as", "অসমীয়া", false),
+    MAITHILI("mai", "mai", "मैथिली", false),
+    SANSKRIT("sa", "sa", "संस्कृतम्", false),
+    KASHMIRI("ks", "ks", "کٲشُر", false),
+    NEPALI("ne", "ne", "नेपाली", false),
+    KONKANI("kok", "kok", "कोंकणी", false),
+    SINDHI("sd", "sd", "سنڌي", false),
+    DOGRI("doi", "doi", "डोगरी", false),
+    MANIPURI("mni", "mni", "মৈতৈলোন্", false),
+    BODO("brx", "brx", "बड़ो", false),
+    SANTALI("sat", "sat", "ᱥᱟᱱᱛᱟᱲᱤ", false);
 
     companion object {
         fun fromCode(code: String?): AppLanguage =

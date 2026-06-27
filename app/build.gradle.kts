@@ -125,6 +125,10 @@ dependencies {
     // Image loading
     implementation("io.coil-kt:coil-compose:2.7.0")
 
+    // Video playback (Sora-generated exercise demos)
+    implementation("androidx.media3:media3-exoplayer:1.4.1")
+    implementation("androidx.media3:media3-ui:1.4.1")
+
     // Health Connect
     implementation("androidx.health.connect:connect-client:1.1.0-alpha07")
 

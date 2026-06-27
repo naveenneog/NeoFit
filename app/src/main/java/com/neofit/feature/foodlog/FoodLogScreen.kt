@@ -47,6 +47,7 @@ import com.neofit.feature.common.DishImage
 import com.neofit.feature.common.EmptyState
 import com.neofit.feature.common.NeoCard
 import com.neofit.feature.common.SectionTitle
+import com.neofit.feature.common.foodAssetUri
 
 @OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
 @Composable
@@ -118,7 +119,7 @@ private fun categoryLabel(category: MealCategory): String = when (category) {
 private fun MealRow(meal: MealLog, onClick: () -> Unit, onDelete: () -> Unit) {
     NeoCard(Modifier.fillMaxWidth().clickable { onClick() }) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            DishImage(meal.imageRef, meal.name, modifier = Modifier.size(54.dp))
+            DishImage(meal.imageRef ?: meal.foodId?.let { foodAssetUri(it) }, meal.name, modifier = Modifier.size(54.dp))
             Spacer(Modifier.width(12.dp))
             Column(Modifier.weight(1f)) {
                 Text(meal.name, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)

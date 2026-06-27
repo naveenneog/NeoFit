@@ -55,7 +55,7 @@ fun AddMealScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(stringResource(R.string.food_add_title)) },
+                title = { Text(stringResource(if (state.isCustom) R.string.food_custom_entry else R.string.food_add_title)) },
                 navigationIcon = {
                     IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back") }
                 },

@@ -61,7 +61,6 @@ import com.neofit.feature.common.foodAssetUri
 @Composable
 fun FoodLogScreen(
     contentPadding: PaddingValues,
-    onAddMeal: () -> Unit,
     onSearch: () -> Unit,
     onPhoto: () -> Unit,
     onOpenMeal: (Long) -> Unit,
@@ -77,9 +76,9 @@ fun FoodLogScreen(
         topBar = { TopAppBar(title = { Text(stringResource(R.string.food_log_title)) }) },
         floatingActionButton = {
             ExtendedFloatingActionButton(
-                onClick = onAddMeal,
-                icon = { Icon(Icons.Filled.Add, contentDescription = null) },
-                text = { Text(stringResource(R.string.action_add)) },
+                onClick = onSearch,
+                icon = { Icon(Icons.Filled.Search, contentDescription = null) },
+                text = { Text(stringResource(R.string.dash_add_food)) },
             )
         },
     ) { inner ->

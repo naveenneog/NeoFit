@@ -101,7 +101,6 @@ fun NeoFitNavGraph(startDestination: String) {
             composable(Routes.FOOD_LOG) {
                 FoodLogScreen(
                     contentPadding = padding,
-                    onAddMeal = { navController.navigate(Routes.foodAdd()) },
                     onSearch = { navController.navigate(Routes.FOOD_SEARCH) },
                     onPhoto = { navController.navigate(Routes.FOOD_PHOTO) },
                     onOpenMeal = { navController.navigate(Routes.mealDetail(it)) },
@@ -123,6 +122,11 @@ fun NeoFitNavGraph(startDestination: String) {
                 MealSearchScreen(
                     onPick = { foodId ->
                         navController.navigate(Routes.foodAdd(foodId)) {
+                            popUpTo(Routes.FOOD_SEARCH) { inclusive = true }
+                        }
+                    },
+                    onAddCustom = {
+                        navController.navigate(Routes.foodAdd()) {
                             popUpTo(Routes.FOOD_SEARCH) { inclusive = true }
                         }
                     },

@@ -20,6 +20,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -41,6 +42,7 @@ import com.neofit.feature.common.foodAssetUri
 @Composable
 fun MealSearchScreen(
     onPick: (String) -> Unit,
+    onAddCustom: () -> Unit,
     onBack: () -> Unit,
     viewModel: MealSearchViewModel = hiltViewModel(),
 ) {
@@ -66,7 +68,9 @@ fun MealSearchScreen(
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
             )
-            Spacer(Modifier.padding(6.dp))
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
+                TextButton(onClick = onAddCustom) { Text(stringResource(R.string.food_custom_entry_cta)) }
+            }
             LazyColumn(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 items(results, key = { it.id }) { food ->
                     FoodResultRow(food, food.displayName(language)) { onPick(food.id) }

@@ -47,6 +47,9 @@
     <string name="dash_weight">Weight</string>
     <string name="dash_recommended">Recommended for you</string>
     <string name="dash_quick_add">Quick add meal</string>
+    <string name="dash_add_food">Add food</string>
+    <string name="food_custom_entry">Custom entry</string>
+    <string name="food_custom_entry_cta">Can\'t find it? Add a custom meal</string>
     <string name="dash_quick_workout">Quick workout</string>
     <string name="dash_hydration">Hydration</string>
     <string name="dash_wellness">Wellness score</string>

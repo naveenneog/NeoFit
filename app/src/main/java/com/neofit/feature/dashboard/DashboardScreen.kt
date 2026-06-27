@@ -20,6 +20,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.CameraAlt
 import androidx.compose.material.icons.filled.FitnessCenter
 import androidx.compose.material.icons.filled.LocalDrink
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -210,7 +211,7 @@ private fun MacroPill(label: String, value: Float, target: Float, color: Color) 
 @Composable
 private fun QuickActions(onNavigate: (String) -> Unit) {
     Row(horizontalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.fillMaxWidth()) {
-        QuickAction(Icons.Filled.Add, androidx.compose.ui.res.stringResource(R.string.dash_quick_add), Modifier.weight(1f)) { onNavigate(Routes.foodAdd()) }
+        QuickAction(Icons.Filled.Search, androidx.compose.ui.res.stringResource(R.string.dash_add_food), Modifier.weight(1f)) { onNavigate(Routes.FOOD_SEARCH) }
         QuickAction(Icons.Filled.CameraAlt, androidx.compose.ui.res.stringResource(R.string.food_photo_log), Modifier.weight(1f)) { onNavigate(Routes.FOOD_PHOTO) }
         QuickAction(Icons.Filled.FitnessCenter, androidx.compose.ui.res.stringResource(R.string.dash_quick_workout), Modifier.weight(1f)) { onNavigate(Routes.EXERCISE_PLANS) }
     }

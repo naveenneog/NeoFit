@@ -28,8 +28,8 @@ class PhotoFoodLogViewModel @Inject constructor(
     fun onImageCaptured(uri: String?) {
         _state.value = _state.value.copy(imageUri = uri, analyzing = true)
         viewModelScope.launch {
-            // The mock recogniser returns popular candidates for confirmation.
-            val predictions = recognitionService.recognize(hint = null)
+            // On-device ML Kit labeling maps the photo to candidate dishes.
+            val predictions = recognitionService.recognize(imageUri = uri, hint = null)
             _state.value = _state.value.copy(analyzing = false, predictions = predictions)
         }
     }
@@ -37,7 +37,7 @@ class PhotoFoodLogViewModel @Inject constructor(
     fun refineWithHint(hint: String) {
         _state.value = _state.value.copy(analyzing = true)
         viewModelScope.launch {
-            val predictions = recognitionService.recognize(hint)
+            val predictions = recognitionService.recognize(imageUri = _state.value.imageUri, hint = hint)
             _state.value = _state.value.copy(analyzing = false, predictions = predictions)
         }
     }

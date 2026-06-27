@@ -19,7 +19,7 @@ import com.neofit.domain.repository.WeightRepository
 import com.neofit.integration.ai.AzureImageGenerationService
 import com.neofit.integration.ai.FoodRecognitionService
 import com.neofit.integration.ai.ImageGenerationService
-import com.neofit.integration.ai.MockFoodRecognitionService
+import com.neofit.integration.ai.MlKitFoodRecognitionService
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -59,5 +59,5 @@ abstract class RepositoryModule {
     abstract fun bindImageGenerationService(impl: AzureImageGenerationService): ImageGenerationService
 
     @Binds @Singleton
-    abstract fun bindFoodRecognitionService(impl: MockFoodRecognitionService): FoodRecognitionService
+    abstract fun bindFoodRecognitionService(impl: MlKitFoodRecognitionService): FoodRecognitionService
 }

@@ -15,19 +15,16 @@ data class FoodPrediction(
  * presented to the user for confirmation/editing — we never auto-log a guess.
  */
 interface FoodRecognitionService {
-    suspend fun recognize(hint: String?): List<FoodPrediction>
+    suspend fun recognize(imageUri: String?, hint: String?): List<FoodPrediction>
 }
 
 /**
- * Heuristic stand-in for an ML image classifier. It matches a text hint against
- * the knowledge base, or returns popular dishes when there's nothing to go on.
- *
- * TODO(prod): replace with a real recogniser — an on-device TFLite/ML Kit model
- * or a cloud vision endpoint. Keep the "confirm before logging" UX regardless.
+ * Heuristic fallback used when no on-device model result is available. Matches a
+ * text hint against the knowledge base, or returns popular dishes.
  */
 class MockFoodRecognitionService @Inject constructor() : FoodRecognitionService {
 
-    override suspend fun recognize(hint: String?): List<FoodPrediction> {
+    override suspend fun recognize(imageUri: String?, hint: String?): List<FoodPrediction> {
         val matches = if (!hint.isNullOrBlank()) {
             FoodKnowledgeBase.foods.filter { it.matches(hint) }.take(5)
         } else emptyList()

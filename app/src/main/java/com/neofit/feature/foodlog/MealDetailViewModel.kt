@@ -52,7 +52,7 @@ class MealDetailViewModel @Inject constructor(
             } else {
                 _state.value = _state.value.copy(
                     generating = false,
-                    imageMessage = "No image available. Configure an Azure image key to enable generation.",
+                    imageMessage = "Couldn't generate a photo. AI image generation runs on Azure via your Azure AD sign-in and isn't enabled in this build.",
                 )
             }
         }

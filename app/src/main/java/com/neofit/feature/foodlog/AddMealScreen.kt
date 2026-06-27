@@ -1,5 +1,6 @@
 package com.neofit.feature.foodlog
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -48,6 +50,7 @@ fun AddMealScreen(
     viewModel: AddMealViewModel = hiltViewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
+    val context = LocalContext.current
 
     Scaffold(
         topBar = {
@@ -108,7 +111,12 @@ fun AddMealScreen(
 
             PrimaryButton(
                 text = stringResource(R.string.action_save),
-                onClick = { viewModel.save(onDone) },
+                onClick = {
+                    viewModel.save {
+                        Toast.makeText(context, context.getString(R.string.meal_added_toast), Toast.LENGTH_SHORT).show()
+                        onDone()
+                    }
+                },
                 enabled = !state.saving && state.name.isNotBlank() && state.estimate != null,
             )
             Spacer(Modifier.height(8.dp))

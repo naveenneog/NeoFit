@@ -56,6 +56,8 @@
     <string name="food_log_title">Food log</string>
     <string name="food_add_title">Add meal</string>
     <string name="food_search_hint">Search dishes… (idli, rajma chawal, chai)</string>
+    <string name="food_search_title">Search dishes</string>
+    <string name="meal_added_toast">Meal added ✓</string>
     <string name="food_breakfast">Breakfast</string>
     <string name="food_lunch">Lunch</string>
     <string name="food_dinner">Dinner</string>

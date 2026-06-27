@@ -18,7 +18,13 @@ class WeightRepositoryImpl @Inject constructor(
     override fun observeHistory(): Flow<List<WeightEntry>> =
         weightDao.observeAll().map { list -> list.map { it.toDomain() } }
 
-    override suspend fun add(entry: WeightEntry) = weightDao.insert(entry.toEntity())
+    // One weight per day: replace any existing same-day entry so the trend
+    // reflects day-over-day change instead of multiple same-day logs.
+    override suspend fun add(entry: WeightEntry) {
+        val entity = entry.toEntity()
+        weightDao.deleteForDay(entity.dateEpochDay)
+        weightDao.insert(entity)
+    }
 
     override suspend fun latest(): WeightEntry? = weightDao.latest()?.toDomain()
 }

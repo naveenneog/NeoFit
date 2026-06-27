@@ -51,7 +51,7 @@ fun MealSearchScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(stringResource(R.string.food_search_hint).take(18)) },
+                title = { Text(stringResource(R.string.food_search_title)) },
                 navigationIcon = {
                     IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back") }
                 },

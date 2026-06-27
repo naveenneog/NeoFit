@@ -16,4 +16,7 @@ interface WeightDao {
 
     @Insert
     suspend fun insert(entity: WeightEntity)
+
+    @Query("DELETE FROM weight_entry WHERE dateEpochDay = :day")
+    suspend fun deleteForDay(day: Long)
 }

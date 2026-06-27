@@ -71,14 +71,18 @@ fun MealDetailScreen(
         ) {
             DishImage(state.imageRef, meal.name, modifier = Modifier.fillMaxWidth().height(200.dp))
 
-            PrimaryButton(
-                text = if (state.generating) "Generating…" else "Generate dish image (Azure)",
-                onClick = viewModel::generateImage,
-                enabled = !state.generating,
-            )
-            if (state.generating) CircularProgressIndicator()
-            state.imageMessage?.let {
-                Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            // Only offer generation when no photo is available yet (e.g. custom meals);
+            // library dishes already show a bundled gpt-image-2 photo.
+            if (state.imageRef == null) {
+                PrimaryButton(
+                    text = if (state.generating) "Generating…" else "Generate dish image (Azure)",
+                    onClick = viewModel::generateImage,
+                    enabled = !state.generating,
+                )
+                if (state.generating) CircularProgressIndicator()
+                state.imageMessage?.let {
+                    Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                }
             }
 
             EstimateBreakdown(meal)

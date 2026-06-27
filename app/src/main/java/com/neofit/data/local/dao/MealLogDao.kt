@@ -18,6 +18,15 @@ interface MealLogDao {
     @Query("SELECT * FROM meal_log ORDER BY timestampEpochMillis DESC LIMIT :limit")
     suspend fun recent(limit: Int): List<MealLogEntity>
 
+    // Most recent log per distinct dish (library dishes keyed by foodId, custom by name),
+    // for one-tap re-logging of routine meals.
+    @Query(
+        "SELECT * FROM meal_log WHERE id IN " +
+            "(SELECT MAX(id) FROM meal_log GROUP BY COALESCE(foodId, name)) " +
+            "ORDER BY timestampEpochMillis DESC LIMIT :limit",
+    )
+    fun observeRecentDistinct(limit: Int): Flow<List<MealLogEntity>>
+
     @Query("SELECT * FROM meal_log ORDER BY timestampEpochMillis DESC LIMIT 1")
     suspend fun last(): MealLogEntity?
 

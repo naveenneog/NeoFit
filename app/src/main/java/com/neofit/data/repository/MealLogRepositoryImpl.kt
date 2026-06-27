@@ -21,6 +21,9 @@ class MealLogRepositoryImpl @Inject constructor(
     override fun observeMealsBetween(startDay: Long, endDay: Long): Flow<List<MealLog>> =
         mealLogDao.observeBetween(startDay, endDay).map { list -> list.map { it.toDomain() } }
 
+    override fun observeRecentDistinct(limit: Int): Flow<List<MealLog>> =
+        mealLogDao.observeRecentDistinct(limit).map { list -> list.map { it.toDomain() } }
+
     override suspend fun recentMeals(limit: Int): List<MealLog> =
         mealLogDao.recent(limit).map { it.toDomain() }
 

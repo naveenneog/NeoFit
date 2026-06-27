@@ -14,6 +14,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.StarBorder
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -56,6 +58,15 @@ fun MealDetailScreen(
                     IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back") }
                 },
                 actions = {
+                    if (state.canFavourite) {
+                        IconButton(onClick = viewModel::toggleFavourite) {
+                            if (state.isFavourite) {
+                                Icon(Icons.Filled.Star, contentDescription = "Remove from favourites", tint = MaterialTheme.colorScheme.primary)
+                            } else {
+                                Icon(Icons.Filled.StarBorder, contentDescription = "Add to favourites")
+                            }
+                        }
+                    }
                     IconButton(onClick = { viewModel.delete(onBack) }) { Icon(Icons.Filled.Delete, contentDescription = "Delete") }
                 },
             )

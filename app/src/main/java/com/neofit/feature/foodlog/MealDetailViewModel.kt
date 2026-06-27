@@ -4,6 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.neofit.domain.model.MealLog
+import com.neofit.domain.repository.FoodRepository
 import com.neofit.domain.repository.ImageRepository
 import com.neofit.domain.repository.MealLogRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,12 +19,15 @@ data class MealDetailState(
     val imageRef: String? = null,
     val generating: Boolean = false,
     val imageMessage: String? = null,
+    val isFavourite: Boolean = false,
+    val canFavourite: Boolean = false,
 )
 
 @HiltViewModel
 class MealDetailViewModel @Inject constructor(
     private val mealLogRepository: MealLogRepository,
     private val imageRepository: ImageRepository,
+    private val foodRepository: FoodRepository,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
@@ -35,8 +39,17 @@ class MealDetailViewModel @Inject constructor(
         viewModelScope.launch {
             val meal = mealLogRepository.getById(mealId)
             val fallback = meal?.imageRef ?: meal?.foodId?.let { "file:///android_asset/food/$it.jpg" }
-            _state.value = _state.value.copy(meal = meal, imageRef = fallback)
+            _state.value = _state.value.copy(meal = meal, imageRef = fallback, canFavourite = meal?.foodId != null)
+            val fid = meal?.foodId ?: return@launch
+            foodRepository.observeFavourites().collect { favs ->
+                _state.value = _state.value.copy(isFavourite = fid in favs)
+            }
         }
+    }
+
+    fun toggleFavourite() {
+        val fid = _state.value.meal?.foodId ?: return
+        viewModelScope.launch { foodRepository.toggleFavourite(fid) }
     }
 
     fun generateImage() {

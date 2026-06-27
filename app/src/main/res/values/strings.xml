@@ -58,6 +58,8 @@
     <string name="food_search_hint">Search dishes… (idli, rajma chawal, chai)</string>
     <string name="food_search_title">Search dishes</string>
     <string name="meal_added_toast">Meal added ✓</string>
+    <string name="food_recents">Recently logged</string>
+    <string name="food_quick_added">Added %1$s ✓</string>
     <string name="food_breakfast">Breakfast</string>
     <string name="food_lunch">Lunch</string>
     <string name="food_dinner">Dinner</string>

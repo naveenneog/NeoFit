@@ -1,6 +1,6 @@
 package com.neofit.feature.exercise
 
-import android.view.TextureView
+import android.view.LayoutInflater
 import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -15,15 +15,19 @@ import androidx.media3.common.C
 import androidx.media3.common.MediaItem
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
+import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.ui.PlayerView
+import com.neofit.R
 import com.neofit.feature.common.DishImage
 
 /**
- * Plays a Sora-generated exercise demo (muted, looping) into a TextureView so it
- * composes cleanly over the fallback image. The step image is always drawn
- * behind, so a missing/failed video degrades gracefully. Audio is disabled
- * (the clips are silent and some emulators lack the 96 kHz AAC decoder).
+ * Plays a Sora-generated exercise demo (muted, looping) using a media3 PlayerView
+ * with surface_type=texture_view and resize_mode=fit, so the clip keeps its true
+ * aspect ratio (never stretched or cropped) and composes/captures cleanly. The
+ * step image is drawn behind as a fallback (and shows through any letterbox).
  */
+@OptIn(UnstableApi::class)
 @Composable
 fun ExerciseMedia(
     videoUrl: String?,
@@ -55,7 +59,10 @@ fun ExerciseMedia(
             DisposableEffect(videoUrl) { onDispose { player.release() } }
             AndroidView(
                 modifier = Modifier.matchParentSize(),
-                factory = { ctx -> TextureView(ctx).also { player.setVideoTextureView(it) } },
+                factory = { ctx ->
+                    (LayoutInflater.from(ctx).inflate(R.layout.exercise_player, null) as PlayerView)
+                        .apply { this.player = player }
+                },
             )
         }
     }

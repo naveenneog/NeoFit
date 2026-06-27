@@ -6,11 +6,16 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -31,6 +36,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -96,35 +102,51 @@ fun ExerciseDetailScreen(
 
 @Composable
 private fun PlanOverview(plan: ExercisePlan, modifier: Modifier, onStart: () -> Unit) {
-    Column(modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        Text(plan.description, style = MaterialTheme.typography.bodyLarge)
-        Text(
-            "${plan.difficulty.label} • ${plan.durationMin} min • ${plan.schedule}",
-            style = MaterialTheme.typography.labelLarge,
-            color = MaterialTheme.colorScheme.primary,
-        )
-        Text("Equipment: ${plan.requiredEquipment.joinToString()}", style = MaterialTheme.typography.bodyMedium)
-        NeoCard(Modifier.fillMaxWidth()) {
-            Text("⚠️ ${plan.safetyNote}", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+    LazyColumn(modifier, verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        item { Text(plan.description, style = MaterialTheme.typography.bodyLarge) }
+        item {
+            Text(
+                "${plan.difficulty.label} • ${plan.durationMin} min • ${plan.schedule}",
+                style = MaterialTheme.typography.labelLarge,
+                color = MaterialTheme.colorScheme.primary,
+            )
         }
-        Text("Exercises (${plan.items.size})", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
-        plan.items.forEach { item ->
+        item { Text("Equipment: ${plan.requiredEquipment.joinToString()}", style = MaterialTheme.typography.bodyMedium) }
+        item {
             NeoCard(Modifier.fillMaxWidth()) {
-                Column {
-                    Text(item.name, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-                    Text(
-                        item.reps ?: "${item.durationSec ?: 0}s",
-                        style = MaterialTheme.typography.labelMedium,
-                        color = MaterialTheme.colorScheme.primary,
+                Text("⚠️ ${plan.safetyNote}", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            }
+        }
+        item { Text("Exercises (${plan.items.size})", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold) }
+        items(plan.items, key = { it.id }) { item ->
+            NeoCard(Modifier.fillMaxWidth()) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    // Looping muted video preview of the move (aspect-correct).
+                    ExerciseMedia(
+                        videoUrl = item.videoUrl,
+                        imageRef = null,
+                        label = item.name,
+                        modifier = Modifier.width(140.dp).aspectRatio(16f / 9f).clip(RoundedCornerShape(10.dp)),
                     )
-                    if (item.targetMuscles.isNotEmpty()) {
-                        Text("Targets: ${item.targetMuscles.joinToString()}", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Spacer(Modifier.width(12.dp))
+                    Column(Modifier.weight(1f)) {
+                        Text(item.name, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+                        Text(
+                            item.reps ?: "${item.durationSec ?: 0}s",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.primary,
+                        )
+                        if (item.targetMuscles.isNotEmpty()) {
+                            Text("Targets: ${item.targetMuscles.joinToString()}", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        }
                     }
                 }
             }
         }
-        PrimaryButton("Start workout", onStart)
-        Spacer(Modifier.height(8.dp))
+        item {
+            PrimaryButton("Start workout", onStart)
+            Spacer(Modifier.height(8.dp))
+        }
     }
 }
 
@@ -137,22 +159,31 @@ private fun RunnerView(
     onSkip: () -> Unit,
 ) {
     val item = state.currentItem ?: return
+    val items = state.plan?.items.orEmpty()
+    val isRest = state.phase == Phase.REST
+    val nextItem = items.getOrNull(state.currentIndex + 1)
+    // During rest, preview the upcoming exercise instead of replaying the last one.
+    val media = if (isRest) (nextItem ?: item) else item
+
     Column(modifier.verticalScroll(rememberScrollState()), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(12.dp)) {
         Text(
-            "Step ${state.currentIndex + 1} of ${state.plan?.items?.size ?: 0}",
+            "Step ${state.currentIndex + 1} of ${items.size}",
             style = MaterialTheme.typography.labelLarge,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
         Text(
-            if (state.phase == Phase.REST) "Rest" else item.name,
+            if (isRest) "Rest" else item.name,
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
         )
+        if (isRest && nextItem != null) {
+            Text("Next up: ${nextItem.name}", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
+        }
         ExerciseMedia(
-            videoUrl = item.videoUrl,
-            imageRef = state.stepImageRef,
-            label = item.name,
-            modifier = Modifier.fillMaxWidth().height(200.dp),
+            videoUrl = media.videoUrl,
+            imageRef = if (isRest) null else state.stepImageRef,
+            label = media.name,
+            modifier = Modifier.fillMaxWidth().aspectRatio(16f / 9f),
         )
 
         if (state.phase == Phase.REST || item.durationSec != null) {

@@ -66,6 +66,10 @@ android {
         compose = true
         buildConfig = true
     }
+    lint {
+        // Media3 PlayerView/UI APIs are marked @UnstableApi; opt-in handled in code.
+        disable += "UnsafeOptInUsageError"
+    }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"

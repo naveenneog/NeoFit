@@ -81,6 +81,7 @@ class ExerciseDetailViewModel @Inject constructor(
     fun skip() = goNext()
 
     private fun startItem(index: Int) {
+        timerJob?.cancel()
         val item = _state.value.plan?.items?.getOrNull(index) ?: return finish()
         _state.value = _state.value.copy(
             currentIndex = index,
@@ -96,6 +97,7 @@ class ExerciseDetailViewModel @Inject constructor(
     }
 
     private fun completeAndRest() {
+        timerJob?.cancel()
         val item = _state.value.currentItem ?: return
         markComplete(item)
         val isLast = _state.value.currentIndex >= (_state.value.plan?.items?.lastIndex ?: 0)
@@ -117,6 +119,7 @@ class ExerciseDetailViewModel @Inject constructor(
     }
 
     private fun goNext() {
+        timerJob?.cancel()
         val next = _state.value.currentIndex + 1
         if (next < (_state.value.plan?.items?.size ?: 0)) startItem(next) else finish()
     }

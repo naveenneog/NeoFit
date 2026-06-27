@@ -7,8 +7,8 @@ LOG = ROOT / "tooling" / "video_gen.log"
 ENDPOINT = "https://ai-contosohub530569751908.cognitiveservices.azure.com"
 APIV = "preview"
 MODEL = "sora-2"
-SIZE = "720x1280"
-SECONDS = "4"
+SIZE = "1280x720"
+SECONDS = "8"
 CONCURRENCY = 4
 
 def log(m):
@@ -42,9 +42,11 @@ queue = [(eid, name) for eid, name in seen.items() if not (OUT / f"{eid}.mp4").e
 log(f"Exercises: {len(seen)} total, {len(queue)} to generate.")
 
 def prompt_for(name):
-    return (f"A fitness instructor performing {name}, full body visible in frame, side view, "
-            f"plain light studio background, athletic wear, slow and clear correct form, neutral "
-            f"soft lighting, clean exercise demonstration video, no text, no captions.")
+    return (f"Professional landscape fitness demonstration of one person performing {name} with proper, correct "
+            f"form. The full body is visible head to toe inside a 16:9 frame, three-quarter or side angle, plain "
+            f"light neutral studio background, athletic wear. The person performs the complete exercise movement "
+            f"slowly and clearly with good technique and repeats it a few times. Smooth realistic motion, even "
+            f"lighting, centered composition, no text, no captions, no on-screen graphics.")
 
 def create(name):
     body = {"model": MODEL, "prompt": prompt_for(name), "seconds": SECONDS, "size": SIZE}

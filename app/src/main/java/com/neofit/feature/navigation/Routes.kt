@@ -22,6 +22,8 @@ object Routes {
     fun foodAdd(foodId: String? = null): String =
         if (foodId == null) FOOD_ADD else "$FOOD_ADD?foodId=$foodId"
 
+    fun foodEdit(mealId: Long): String = "$FOOD_ADD?mealId=$mealId"
+
     fun mealDetail(mealId: Long): String = "$MEAL_DETAIL/$mealId"
     fun exerciseDetail(planId: String): String = "$EXERCISE_DETAIL/$planId"
 }

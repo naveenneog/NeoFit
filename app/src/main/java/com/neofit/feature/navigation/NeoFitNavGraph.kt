@@ -108,11 +108,13 @@ fun NeoFitNavGraph(startDestination: String) {
             }
 
             composable(
-                route = "${Routes.FOOD_ADD}?foodId={foodId}",
-                arguments = listOf(navArgument("foodId") { type = NavType.StringType; nullable = true; defaultValue = null }),
+                route = "${Routes.FOOD_ADD}?foodId={foodId}&mealId={mealId}",
+                arguments = listOf(
+                    navArgument("foodId") { type = NavType.StringType; nullable = true; defaultValue = null },
+                    navArgument("mealId") { type = NavType.LongType; defaultValue = -1L },
+                ),
             ) { entry ->
                 AddMealScreen(
-                    foodId = entry.arguments?.getString("foodId"),
                     onDone = { navController.popBackStack(Routes.FOOD_LOG, inclusive = false) },
                     onBack = { navController.popBackStack() },
                 )
@@ -152,6 +154,7 @@ fun NeoFitNavGraph(startDestination: String) {
                 MealDetailScreen(
                     mealId = entry.arguments?.getLong("mealId") ?: 0L,
                     onBack = { navController.popBackStack() },
+                    onEdit = { navController.navigate(Routes.foodEdit(it)) },
                 )
             }
 

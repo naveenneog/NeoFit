@@ -44,7 +44,6 @@ import com.neofit.feature.common.SingleChoiceChips
 @OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
 @Composable
 fun AddMealScreen(
-    foodId: String?,
     onDone: () -> Unit,
     onBack: () -> Unit,
     viewModel: AddMealViewModel = hiltViewModel(),
@@ -55,7 +54,17 @@ fun AddMealScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(stringResource(if (state.isCustom) R.string.food_custom_entry else R.string.food_add_title)) },
+                title = {
+                    Text(
+                        stringResource(
+                            when {
+                                state.isEditing -> R.string.food_edit_title
+                                state.isCustom -> R.string.food_custom_entry
+                                else -> R.string.food_add_title
+                            },
+                        ),
+                    )
+                },
                 navigationIcon = {
                     IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back") }
                 },
@@ -112,8 +121,9 @@ fun AddMealScreen(
             PrimaryButton(
                 text = stringResource(R.string.action_save),
                 onClick = {
+                    val msg = if (state.isEditing) R.string.meal_updated_toast else R.string.meal_added_toast
                     viewModel.save {
-                        Toast.makeText(context, context.getString(R.string.meal_added_toast), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, context.getString(msg), Toast.LENGTH_SHORT).show()
                         onDone()
                     }
                 },

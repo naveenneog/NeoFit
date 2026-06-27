@@ -14,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarBorder
 import androidx.compose.material3.CircularProgressIndicator
@@ -45,6 +46,7 @@ import com.neofit.feature.common.SectionTitle
 fun MealDetailScreen(
     mealId: Long,
     onBack: () -> Unit,
+    onEdit: (Long) -> Unit,
     viewModel: MealDetailViewModel = hiltViewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -58,6 +60,7 @@ fun MealDetailScreen(
                     IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back") }
                 },
                 actions = {
+                    IconButton(onClick = { onEdit(mealId) }) { Icon(Icons.Filled.Edit, contentDescription = "Edit") }
                     if (state.canFavourite) {
                         IconButton(onClick = viewModel::toggleFavourite) {
                             if (state.isFavourite) {

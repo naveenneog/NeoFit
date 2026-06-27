@@ -3,6 +3,44 @@
 A running record of what was built and key decisions/approaches (including pitfalls fixed), so the
 work is traceable and we don't repeat dead-ends.
 
+## [1.3.0] — UX friction fixes, charts & full localisation
+
+Senior-QA + creative-UX pass on the Android 14 emulator. Each item was built → installed →
+verified on-device → committed individually; unit tests and `assembleDebug` stay green.
+
+### Delivered (verified on emulator)
+- **Edit a logged meal in place** — meal detail gains an Edit action; the add form pre-fills and
+  the existing row is updated (verified via SQLite that the row id is reused, no duplicate insert).
+- **Discard-changes guard** — a dirty add/edit form now confirms before Back (toolbar + system back)
+  discards unsaved input; a pristine form still exits instantly.
+- **Recently-logged + Favourites quick-add** on the food log; one-tap re-log with a toast.
+- **Search-first "Add food"** — dish search is the primary CTA; the blank manual form is a clearly
+  secondary "Custom entry".
+- **Weight trend line chart** — replaced the from-zero bar chart (which made every weight a full bar)
+  with a zoomed-axis line+area chart, so the trend is actually legible.
+- **Goal-progress card** — percent to target, a Start→Goal bar and "X kg to go".
+- **Consistent targets** — Dashboard, Insights and Profile now derive calorie/protein targets from
+  one source (`ComputeGoalUseCase`), so they agree and track weight changes.
+- **Complete translations** — localised ~21 previously-hardcoded UI strings and filled every missing
+  key in all 22 scheduled languages; verified Hindi across Dashboard/Progress/Profile/Insights.
+- **Polish** — Rough-estimate chip is orange (not alarming red); all three macros show targets;
+  removed Material3 progress-bar stop-dots; `imePadding` so Save clears the keyboard/gesture nav.
+
+### Key decisions
+- **Targets are a pure function of the profile.** Logging weight updates `currentWeightKg` but not the
+  stored target snapshot, so screens that recomputed live diverged from screens that read the snapshot.
+  Resolved by having all screens call `ComputeGoalUseCase`, the single derivation.
+- **Incremental, non-destructive translation.** `tooling/translate_missing.py` translates only the
+  keys missing from each locale (Azure gpt-4o-mini, AAD auth) and merges them, leaving existing
+  translations untouched; `fix_apostrophes.py` enforces Android `\'` escaping. gpt-4o-mini is weak at
+  Ol Chiki (Santali), so that locale is partly romanised — flagged for a future human pass.
+- **Charts:** weight uses a min/max-zoomed line (trend matters), step/calorie counts keep from-zero
+  bars (magnitude matters).
+
+### Known gaps (tracked in qa_findings)
+- Deeper i18n: enum `.label` values (diet/goal/region) and the goal rationale text are still English.
+- Onboarding insets/affordances, day-one simulated data, reminders, a11y/RTL audit remain open.
+
 ## [1.1.0] — AI media, languages & smarter food
 
 ### Delivered (all verified on the Android 14 emulator)

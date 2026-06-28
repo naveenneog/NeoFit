@@ -63,6 +63,10 @@ fun ExerciseMedia(
                     (LayoutInflater.from(ctx).inflate(R.layout.exercise_player, null) as PlayerView)
                         .apply { this.player = player }
                 },
+                // Reattach the freshly-remembered player when the exercise (videoUrl)
+                // changes, otherwise the PlayerView keeps the previous, released player
+                // and the clip never advances to the next exercise.
+                update = { it.player = player },
             )
         }
     }

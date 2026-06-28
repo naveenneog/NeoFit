@@ -112,7 +112,7 @@ class CalorieEstimationEngine {
         manuallyCorrected: Boolean,
     ): String {
         if (manuallyCorrected) return "Values confirmed by you."
-        val sb = StringBuilder("Based on a ${portion.label} of ${food.nameEn}")
+        val sb = StringBuilder("Based on ${portion.label} of ${food.nameEn}")
         val style = cookingOverride ?: food.cookingStyle
         sb.append(", ${style.name.lowercase()} style")
         if (food.isStreetFood) sb.append("; street-food portions vary")

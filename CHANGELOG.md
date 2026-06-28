@@ -3,6 +3,35 @@
 A running record of what was built and key decisions/approaches (including pitfalls fixed), so the
 work is traceable and we don't repeat dead-ends.
 
+## [1.3.1] — workout video fix + bigger South Indian menu
+
+### Delivered (verified on the Android 14 emulator)
+- **Workout videos now advance per exercise.** The runner re-created the ExoPlayer per exercise but
+  the AndroidView had only a `factory` (runs once) and no `update`, so the on-screen PlayerView kept
+  the first, already-released player and the clip looked frozen. Added `update = { it.player = player }`.
+  Verified: Step 1 (Warm-up March) → Step 3 (Bodyweight Squats) swaps clips and plays (motion confirmed
+  across two frames 1.5 s apart).
+- **+37 South Indian restaurant dishes** with researched per-serving kcal/macros, region SOUTH,
+  veg/non-veg, aliases and authentic Tamil/Telugu/Kannada/Malayalam names: rava dosa, onion uttapam,
+  set dosa, pesarattu, appam, puttu, idiyappam, poori masala, rava idli, kesari/khara bath, bisi bele
+  bath, lemon/tamarind/coconut rice, rasam (+ rasam rice), veg kurma, avial, poriyal, coconut chutney,
+  South Indian meals, mysore bonda, bajji, maddur/sambar vada, mangalore buns, kerala parotta,
+  chicken 65, chicken/mutton chettinad, fish fry, prawn curry, Kerala egg roast, mysore pak, payasam,
+  badam milk. 107 dishes total, no duplicate ids. Verified: searching "bisi" returns Bisi Bele Bath
+  (~360 kcal).
+- **Launcher icon centred.** The adaptive-icon foreground heart sat small and ~10 units high in the
+  108×108 viewport, so it looked off-centre in the app drawer. Re-centred and enlarged it (group
+  `pivot 32,20 · scale 1.7 · translate 22,34`) so the heart is dead-centre of the safe zone at a
+  proper size. Verified by rendering the vector + group transform (heart centre maps exactly to 54,54,
+  fully inside the 66 dp safe circle).
+
+### Tooling
+- **tooling/emulator_guard.ps1** — coordinates the single Android emulator shared across multiple
+  DailyApps builds. Reports occupancy (foreground package via `topResumedActivity`) plus a cooperative,
+  auto-expiring lock file, with `status | foreground | acquire | heartbeat | release | wait`. A test
+  run must claim the device first instead of stealing focus from another build (verified: it reports
+  BUSY for com.kidkat.kidkat and refuses).
+
 ## [1.3.0] — UX friction fixes, charts & full localisation
 
 Senior-QA + creative-UX pass on the Android 14 emulator. Each item was built → installed →

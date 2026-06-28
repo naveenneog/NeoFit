@@ -32,7 +32,7 @@ param(
   [string]$Serial
 )
 
-$ErrorActionPreference = 'Stop'
+$ErrorActionPreference = 'Continue'
 $sdk = if ($env:ANDROID_SDK_ROOT) { $env:ANDROID_SDK_ROOT }
        elseif ($env:ANDROID_HOME) { $env:ANDROID_HOME }
        else { "$env:LOCALAPPDATA\Android\Sdk" }
@@ -40,7 +40,9 @@ $adb = Join-Path $sdk 'platform-tools\adb.exe'
 $lockPath = '/data/local/tmp/dailyapps_emu.lock'
 $target = if ($Serial) { @('-s', $Serial) } else { @() }
 
-function Adb { & $adb @target @args }
+# Run adb, suppressing stderr so a missing lock file / transient disconnect
+# never throws (Windows PowerShell treats native stderr as an error otherwise).
+function Adb { & $adb @target @args 2>$null }
 
 function Get-Foreground {
   $dump = Adb shell dumpsys activity activities 2>$null

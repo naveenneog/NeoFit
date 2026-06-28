@@ -8,6 +8,7 @@ import com.neofit.data.repository.MealLogRepositoryImpl
 import com.neofit.data.repository.PreferencesRepositoryImpl
 import com.neofit.data.repository.UserRepositoryImpl
 import com.neofit.data.repository.WeightRepositoryImpl
+import com.neofit.domain.coach.CoachService
 import com.neofit.domain.repository.ActivityRepository
 import com.neofit.domain.repository.ExerciseRepository
 import com.neofit.domain.repository.FoodRepository
@@ -20,6 +21,7 @@ import com.neofit.integration.ai.AzureImageGenerationService
 import com.neofit.integration.ai.FoodRecognitionService
 import com.neofit.integration.ai.ImageGenerationService
 import com.neofit.integration.ai.MlKitFoodRecognitionService
+import com.neofit.integration.ai.RuleBasedCoachService
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -60,4 +62,7 @@ abstract class RepositoryModule {
 
     @Binds @Singleton
     abstract fun bindFoodRecognitionService(impl: MlKitFoodRecognitionService): FoodRecognitionService
+
+    @Binds @Singleton
+    abstract fun bindCoachService(impl: RuleBasedCoachService): CoachService
 }

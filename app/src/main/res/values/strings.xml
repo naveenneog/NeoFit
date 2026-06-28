@@ -17,6 +17,7 @@
     <!-- Bottom nav -->
     <string name="nav_home">Home</string>
     <string name="nav_food">Food</string>
+    <string name="nav_coach">Coach</string>
     <string name="nav_exercise">Exercise</string>
     <string name="nav_progress">Progress</string>
     <string name="nav_profile">Profile</string>

@@ -7,6 +7,7 @@ object Routes {
 
     const val HOME = "home"
     const val FOOD_LOG = "food_log"
+    const val COACH = "coach"
     const val FOOD_ADD = "food_add"
     const val FOOD_SEARCH = "food_search"
     const val FOOD_PHOTO = "food_photo"
@@ -32,6 +33,7 @@ object Routes {
 enum class BottomTab(val route: String) {
     HOME(Routes.HOME),
     FOOD(Routes.FOOD_LOG),
+    COACH(Routes.COACH),
     EXERCISE(Routes.EXERCISE_PLANS),
     PROGRESS(Routes.PROGRESS),
     PROFILE(Routes.PROFILE),

@@ -5,6 +5,7 @@ import androidx.compose.material.icons.automirrored.filled.TrendingUp
 import androidx.compose.material.icons.filled.FitnessCenter
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Psychology
 import androidx.compose.material.icons.filled.Restaurant
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -23,6 +24,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.neofit.R
+import com.neofit.feature.coach.CoachScreen
 import com.neofit.feature.dashboard.DashboardScreen
 import com.neofit.feature.exercise.ExerciseDetailScreen
 import com.neofit.feature.exercise.ExercisePlansScreen
@@ -43,6 +45,7 @@ private data class TabSpec(val tab: BottomTab, val icon: ImageVector, val labelR
 private val tabs = listOf(
     TabSpec(BottomTab.HOME, Icons.Filled.Home, R.string.nav_home),
     TabSpec(BottomTab.FOOD, Icons.Filled.Restaurant, R.string.nav_food),
+    TabSpec(BottomTab.COACH, Icons.Filled.Psychology, R.string.nav_coach),
     TabSpec(BottomTab.EXERCISE, Icons.Filled.FitnessCenter, R.string.nav_exercise),
     TabSpec(BottomTab.PROGRESS, Icons.AutoMirrored.Filled.TrendingUp, R.string.nav_progress),
     TabSpec(BottomTab.PROFILE, Icons.Filled.Person, R.string.nav_profile),
@@ -96,6 +99,10 @@ fun NeoFitNavGraph(startDestination: String) {
 
             composable(Routes.HOME) {
                 DashboardScreen(contentPadding = padding, onNavigate = { navController.navigate(it) })
+            }
+
+            composable(Routes.COACH) {
+                CoachScreen(contentPadding = padding)
             }
 
             composable(Routes.FOOD_LOG) {

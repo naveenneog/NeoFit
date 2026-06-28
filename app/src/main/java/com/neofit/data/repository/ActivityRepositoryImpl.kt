@@ -21,7 +21,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
-import kotlin.math.absoluteValue
 
 @Singleton
 class ActivityRepositoryImpl @Inject constructor(
@@ -66,24 +65,25 @@ class ActivityRepositoryImpl @Inject constructor(
                     source = StepSource.HEALTH_CONNECT,
                 )
             } else {
-                // Health Connect unavailable: keep any existing value, else simulate
-                // a plausible day so the dashboard is demonstrable.
+                // Health Connect unavailable: surface only genuinely observed data.
+                // Keep a real value already recorded for today (HC or manual entry);
+                // otherwise report zero — never fabricate activity (QA #4/#6). This
+                // also overwrites any stale value left by the old step simulator.
                 val existing = stepDao.get(today)?.toDomain()
-                val steps = existing?.steps?.takeIf { it > 0 } ?: simulateSteps(today)
-                StepSummary(
-                    dateEpochDay = today,
-                    steps = steps,
-                    distanceMeters = CalorieMath.distanceMetersFromSteps(steps, heightCm),
-                    activeCaloriesKcal = CalorieMath.caloriesFromSteps(steps, weightKg),
-                    source = StepSource.ESTIMATED,
-                )
+                val isReal = existing != null && existing.steps > 0 &&
+                    (existing.source == StepSource.HEALTH_CONNECT || existing.source == StepSource.MANUAL)
+                if (isReal) {
+                    existing!!
+                } else {
+                    StepSummary(dateEpochDay = today, steps = 0, source = StepSource.NONE)
+                }
             }
             stepDao.upsert(summary.toEntity())
             syncStatus.value = SyncStatus(
                 source = "health_connect",
                 lastSyncEpochMillis = DateUtil.nowMillis(),
                 state = SyncState.SUCCESS,
-                message = if (snapshot != null) "Synced from Health Connect" else "Estimated (Health Connect unavailable)",
+                message = if (snapshot != null) "Synced from Health Connect" else "Health Connect not connected",
             )
             summary
         }.also { result ->
@@ -103,10 +103,5 @@ class ActivityRepositoryImpl @Inject constructor(
     override suspend fun addWater(epochDay: Long, delta: Int) {
         val current = waterDao.get(epochDay)?.glasses ?: 0
         waterDao.upsert(WaterEntity(epochDay, (current + delta).coerceAtLeast(0)))
-    }
-
-    private fun simulateSteps(day: Long): Int {
-        val r = (day * 2654435761L).absoluteValue % 6000
-        return 3000 + r.toInt()
     }
 }

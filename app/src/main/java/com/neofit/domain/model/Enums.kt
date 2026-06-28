@@ -95,7 +95,7 @@ enum class PlanGoal(val label: String) {
 
 enum class LogSource { SEARCH, QUICK_ADD, PHOTO, MANUAL, REPEAT }
 
-enum class StepSource { HEALTH_CONNECT, ESTIMATED, MANUAL }
+enum class StepSource { HEALTH_CONNECT, ESTIMATED, MANUAL, NONE }
 
 enum class ImageSource { WEB, AZURE_GENERATED, PLACEHOLDER, BUNDLED }
 

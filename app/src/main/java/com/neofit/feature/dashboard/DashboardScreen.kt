@@ -37,6 +37,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.neofit.R
 import com.neofit.core.common.UiState
+import com.neofit.domain.model.StepSource
 import com.neofit.core.designsystem.CalorieBurned
 import com.neofit.core.designsystem.CalorieEaten
 import com.neofit.core.designsystem.CalorieRemaining
@@ -239,12 +240,17 @@ private fun QuickAction(icon: androidx.compose.ui.graphics.vector.ImageVector, l
 
 @Composable
 private fun StepsWellnessRow(data: DashboardSummary, onSync: () -> Unit) {
+    val realSteps = data.steps > 0 || data.stepSource == StepSource.HEALTH_CONNECT
     Row(horizontalArrangement = Arrangement.spacedBy(14.dp), modifier = Modifier.fillMaxWidth()) {
-        NeoCard(Modifier.weight(1f)) {
+        NeoCard(Modifier.weight(1f).clickable { onSync() }) {
             Column {
                 Text(androidx.compose.ui.res.stringResource(R.string.dash_steps), style = MaterialTheme.typography.labelLarge)
                 Text("${data.steps}", style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
-                Text("of ${data.stepTarget} • ${data.stepSource.name.lowercase()}", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(
+                    "of ${data.stepTarget}" + if (realSteps) " • ${stepSourceLabel(data.stepSource)}" else "",
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
             }
         }
         NeoCard(Modifier.weight(1f)) {
@@ -255,6 +261,13 @@ private fun StepsWellnessRow(data: DashboardSummary, onSync: () -> Unit) {
             }
         }
     }
+}
+
+private fun stepSourceLabel(source: StepSource): String = when (source) {
+    StepSource.HEALTH_CONNECT -> "Health Connect"
+    StepSource.MANUAL -> "manual"
+    StepSource.ESTIMATED -> "estimated"
+    StepSource.NONE -> ""
 }
 
 @Composable

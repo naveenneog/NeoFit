@@ -26,7 +26,7 @@ class DashboardViewModel @Inject constructor(
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), UiState.Loading)
 
     init {
-        // Pull (or simulate) today's activity on entry.
+        // Pull today's activity (Health Connect when available) on entry.
         viewModelScope.launch { activityRepository.syncToday() }
     }
 

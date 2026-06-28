@@ -10,13 +10,14 @@ all **offline-first**, **privacy-first**, and **transparent about estimation**.
 > nutrition advice. Calorie values for many Indian dishes are approximations, and the app says so.
 
 <p align="center">
-  <a href="https://github.com/naveenneog/NeoFit/releases/latest/download/NeoFit-v1.1.0.apk"><img alt="Download APK" src="https://img.shields.io/badge/Download-APK%20v1.1.0-FF7A1A?style=for-the-badge&logo=android&logoColor=white"></a>
+  <a href="https://github.com/naveenneog/NeoFit/releases/latest/download/NeoFit-v1.3.1.apk"><img alt="Download APK" src="https://img.shields.io/badge/Download-APK%20v1.3.1-FF7A1A?style=for-the-badge&logo=android&logoColor=white"></a>
   <a href="https://naveenneog.github.io/NeoFit/"><img alt="Website" src="https://img.shields.io/badge/Website-GitHub%20Pages-1B998B?style=for-the-badge&logo=githubpages&logoColor=white"></a>
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/License-PolyForm%20Noncommercial%201.0.0-E8505B?style=for-the-badge"></a>
 </p>
 
 - 🌐 **Website:** https://naveenneog.github.io/NeoFit/
-- ⬇️ **Latest APK:** [NeoFit-v1.1.0.apk](https://github.com/naveenneog/NeoFit/releases/latest/download/NeoFit-v1.1.0.apk) · Android 8.0 (API 26)+
+- ⬇️ **Latest APK:** [NeoFit-v1.3.1.apk](https://github.com/naveenneog/NeoFit/releases/latest/download/NeoFit-v1.3.1.apk) · Android 8.0 (API 26)+
+- 🏛️ **Architecture & restart context:** [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
 - 📜 **License:** [PolyForm Noncommercial 1.0.0](LICENSE) — open-source, **free for non-commercial use**.
 
 ---
